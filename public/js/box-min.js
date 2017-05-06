@@ -10,7 +10,6 @@ function mouseCon() {
     // On Mouse Down Matter js
     Matter.Events.on(MouseMatter, "mousedown", function() {
         if (this.body != null) {
-            // console.log(this.body.label);
             for (var i = 0; i < elements.length; i++) {
                 if (elements[i].body.label === this.body.label) {
                     elStatic(StaticActive, this.body, elements, i);
@@ -20,13 +19,8 @@ function mouseCon() {
                 }
             }
              for (var i = 0; i < rope.length; i++) {
-                // console.log(this.body);
                 if (rope[i].body.label === this.body.label) {
-                    // set Static
                     elStatic(StaticActive, this.body, rope, i);
-                    // set Link
-                    // elLinks(LinksActive, this.body, rope, i);
-                    
                     deletME(deleteActive, this.body, rope, i);
                     RopePulled(this.body, rope, i);
                 }
@@ -51,8 +45,6 @@ var RopeX;
 function roppped(data) {
         RopeY= data.y;
         RopeX = data.x;
-        // console.log(RopeY);
-        // console.log(RopeX);
 }
 
 function deletME(bool, Tbody, elements, i) {
@@ -78,7 +70,6 @@ function deletME(bool, Tbody, elements, i) {
 
 function elStatic(bool, Tbody, elements, i) {
     // set Static
-
     if (bool) {
         if (Tbody.isStatic == true) {
             Matter.Body.setStatic(Tbody, false)
@@ -98,29 +89,28 @@ function elStatic(bool, Tbody, elements, i) {
 var obj = {}
 var FirstEl;
 function elLinks(bool, Tbody, elements, i) {
-    // set Link
     if (bool === true) {
         if (objCount === 0) {
-            clickedObj = Tbody;
-            FirstEl = elements[i];
-            setColor(elements[i], elements[i].color, '#A5FF3D', true);
-            // obj['a'] = clickedObj.label;
-            obj = {a: clickedObj.label};
+            if (Tbody) {
+                 clickedObj = Tbody;
+                FirstEl = elements[i];
+                setColor(elements[i], elements[i].color, '#A5FF3D', true);
+                obj = {a: clickedObj.label};
+            }
         } else {
-            clickedObj_Prev = Tbody;            
-            setColor(elements[i], elements[i].color, '#A5FF3D', true);
-            if ((clickedObj_Prev != clickedObj) && (clickedObj != clickedObj_Prev)) {
-            
-                    obj['b'] = clickedObj_Prev.label;
-                    FirstEl.connections.push(obj);
-                    elements[i].connections.push(obj);
-                    // elements[i].connectionsA.push(clickedObj.label);
-                    // elements[i].connectionsB.push(clickedObj_Prev.label);
-                    obj = {};
-                if (Tbody.circleRadius) {
-                    joints.push(new Constraint(clickedObj, clickedObj_Prev, (clickedObj.circleRadius + clickedObj_Prev.circleRadius)*1.5, stiff));
-                } else {
-                    joints.push(new Constraint(clickedObj, clickedObj_Prev, clickedObj.height + clickedObj_Prev.height*1.5, stiff));
+            if (Tbody) {
+                clickedObj_Prev = Tbody;            
+                setColor(elements[i], elements[i].color, '#A5FF3D', true);
+                if ((clickedObj_Prev != clickedObj) && (clickedObj != clickedObj_Prev)) {
+                        obj['b'] = clickedObj_Prev.label;
+                        FirstEl.connections.push(obj);
+                        elements[i].connections.push(obj);
+                        obj = {};
+                    if (Tbody.circleRadius) {
+                        joints.push(new Constraint(clickedObj, clickedObj_Prev, (clickedObj.circleRadius + clickedObj_Prev.circleRadius)*1.5, stiff));
+                    } else {
+                        joints.push(new Constraint(clickedObj, clickedObj_Prev, clickedObj.height + clickedObj_Prev.height*1.5, stiff));
+                    }
                 }
             }
         }
@@ -147,8 +137,6 @@ function MakeSquare(bool, Tbody, elements, i) {
             squareMaker.push(elements[i]);
             countBylabel = count(squareMaker, function(item) { return item.body.label })
             var equaled = allTrue(countBylabel);
-            // console.log(countBylabel);
-            // console.log(equaled);
         }else{
              squareMaker.push(elements[i]);
 

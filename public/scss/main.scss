@@ -97,6 +97,7 @@ $User:#64CFFF;
 		transition:all .15s $Standard;
 		font-family:$sans !important;
 		font-family:$serif;
+		border-radius: 0;
 		&:focus{
 			outline:none;
 		}
