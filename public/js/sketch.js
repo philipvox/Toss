@@ -153,7 +153,7 @@ function draw() {
         elements[i].show();
         var y = elements[i].body.position.y;
         var x = elements[i].body.position.x;
-        var force = Matter.Vector.div(Matter.Vector.mult(elements[i].body.velocity, -1), 400);
+        var force = Matter.Vector.div(Matter.Vector.mult(elements[i].body.velocity, -1), 1000);
         SendBallConstructor(elements, i, x, y, force);
     }
     for (var i = 0; i < dots.length; i++) {
@@ -221,7 +221,6 @@ function SendBallConstructor(elements, i, x, y, force) {
 
         var ConnectionA;
         var ConnectionB;
-        // console.log(elements[i].connections);
         for (var j = 0; j < joints.length; j++) {
             if (elements[i].body.label == joints[j].a.label) {
                 ConnectionB = joints[j].b.label;
@@ -282,7 +281,6 @@ function InitDrawing(data) {
     } else {
         var c = new circ(x, y, r, bounce, friction, id, force, connection);
         elements.push(c);
-        console.log(c);
     }
     JointConnectionDely = 230;
     // InitJoints(id, ConnectionA, ConnectionB, type, connection);

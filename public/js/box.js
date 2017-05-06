@@ -10,7 +10,7 @@ function mouseCon() {
     // On Mouse Down Matter js
     Matter.Events.on(MouseMatter, "mousedown", function() {
         if (this.body != null) {
-            console.log(this.body.label);
+            // console.log(this.body.label);
             for (var i = 0; i < elements.length; i++) {
                 if (elements[i].body.label === this.body.label) {
                     elStatic(StaticActive, this.body, elements, i);
@@ -169,22 +169,18 @@ function allTrue(obj){
         var val = obj[keys[i]];
         keysArray.push(val);
     }
-    console.log(keysArray.sort(function(a, b) {return a - b;}));
-    for (var i = 0; i < keysArray.length; i++) {
-        var val = keysArray[i];
-    }
     if (keysArray.equals(spr)) {
-        console.log('spr');
+        // console.log('spr');
         dots.push(new dot(squareMaker, 'spr'));
         squareMaker =[];
     }
     if (keysArray.equals(tri)) {
-        console.log('tri');
+        // console.log('tri');
         dots.push(new dot(squareMaker, 'tri'));
         squareMaker =[];
     }
     if (keysArray.equals(rect)) {
-        console.log('rect');
+        // console.log('rect');
         dots.push(new dot(squareMaker, 'rect'));
         squareMaker =[];
     }
@@ -219,7 +215,7 @@ function dot(arr, string) {
     }
     if (string == 'tri') {
         this.color = '#76FF03'
-        CollisionDetection(uniq_fast(this.childernlabels),'#76FF03')
+        // CollisionDetection(uniq_fast(this.childernlabels),'#76FF03')
         Engine.update(engine);
     }
     this.show = function() {
@@ -243,54 +239,51 @@ function dot(arr, string) {
     }
 
 }
-function CollisionDetection(array, colors) {
-    var coll;
-    // console.log(array);
-    var Boddy = object
-    for (var i = 0; i < array.length; i++) {
-         for (var v = 0; v < elements.length; v++) {
-            if (elements[v].body.label == array[i]) {
-                var object = elements[v];
-                // var object = elements.giveBack(array[i], 'body', 'label');
-                // console.log(object);
-                object.color = colors;
-                Events.on(engine, "collisionActive", function(el) {
-                    var oBody = object.body.label
-                    var Boddy = object
-                    var aBody = el.pairs[0].bodyA.label
-                    var bBody = el.pairs[0].bodyB.label
-                    for (i = 0; i < el.pairs.length; i++) {
-                        pair = el.pairs[i];
-                        console.log(pair);
-                        if (!(pair.bodyA.label === oBody || pair.bodyB.label === oBody)) {
-                          continue;
-                        }
-                        Matter.Events.trigger(Boddy.body, 'collision', { pair : pair });    
+// function CollisionDetection(array, colors) {
+//     var coll;
+//     console.log(array);
+//     for (var i = 0; i < array.length; i++) {
+//          for (var v = 0; v < elements.length; v++) {
+//             if (elements[v].body.label == array[i]) {
+//                 var object = elements[v];
+//                 object.color = colors;
+//                 Events.on(engine, "collisionActive", function(el) {
+//                     var oBody = object.body.label
+//                     var Boddy = object
+//                     var aBody = el.pairs[0].bodyA.label
+//                     var bBody = el.pairs[0].bodyB.label
+//                     for (i = 0; i < el.pairs.length; i++) {
+//                         pair = el.pairs[i];
+//                         console.log(pair);
+//                         if (!(pair.bodyA.label === oBody || pair.bodyB.label === oBody)) {
+//                           continue;
+//                         }
+//                         Matter.Events.trigger(Boddy.body, 'collision', { pair : pair });    
                         
-                    }
+//                     }
 
-                });
+//                 });
 
-            }
+//             }
             
-        }
+//         }
         
-        // var Boddy = object.body
-        Matter.Events.on(Boddy.body, 'collision', function(e) {
-         if (e.pair.bodyA.label  != "Rectangle Body" ){
-            if (e.pair.bodyB.label  != Boddy.label){
-                if (Boddy === e.pair.bodyA.label) {
+//         // var Boddy = object.body
+//         Matter.Events.on(Boddy.body, 'collision', function(e) {
+//          if (e.pair.bodyA.label  != "Rectangle Body" ){
+//             if (e.pair.bodyB.label  != Boddy.label){
+//                 if (Boddy === e.pair.bodyA.label) {
 
-                }
-                console.log('A:' + e.pair.bodyA.label);
-                console.log('B:' + e.pair.bodyB.label);
-                console.log('Boddy:' + Boddy.label);
-            }
-         }
+//                 }
+//                 console.log('A:' + e.pair.bodyA.label);
+//                 console.log('B:' + e.pair.bodyB.label);
+//                 console.log('Boddy:' + Boddy.label);
+//             }
+//          }
          
-        });
-    }
-}
+//         });
+//     }
+// }
 // var checker = true;    
 // function actionOnGroup(coll,color) {
 //     for (var d = 0; d < elements.length; d++) {
@@ -400,7 +393,7 @@ function circ(x, y, r, bounce, friction, Id, force, connect) {
     this.connectionsB = [];
     if (connect) {
          this.connections = connect;
-         console.log(connect);
+         // console.log(connect);
     }
     if (force) {
         Matter.Body.applyForce(this.body, this.body.position, force)
