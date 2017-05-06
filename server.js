@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
-var server = app.listen(3000,'0.0.0.0');
+var PORT = process.env.PORT || 3000;
+var server = app.listen(PORT, function(){
+  console.log('working!!');
+});
 
 app.use(express.static('public'));
 
