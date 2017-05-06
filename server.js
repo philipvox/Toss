@@ -29,9 +29,9 @@ function newConnetion(socket) {
   }
   function sendDataballs(data, sendingToUsers) {
     // console.log(clients);
-    // socket.broadcast.emit('balls', data);
+    socket.broadcast.emit('balls', data);
     //trigger to emit 
-    clients[sendingToUsers].emit('balls', data);
+    // clients[sendingToUsers].emit('balls', data);
     // add socket.on('privitBall', data); to client side
 
   }
