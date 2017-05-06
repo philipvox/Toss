@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22.02" height="25.27" viewBox="0 0 22.02 25.27">
+  <defs>
+    <style>
+      .a {
+        fill: #231f20;
+      }
+    </style>
+  </defs>
+  <title>Asset 7</title>
+  <path class="a" d="M.22,0H21.82L22,6.49h-.91q-.67-3.06-1.71-4T15,1.59H12.92V21.13q0,2.21.69,2.73a6.36,6.36,0,0,0,3,.7v.71H5.5v-.71q2.42-.19,3-.8t.6-3.08V1.59H7q-3.17,0-4.32.91t-1.73,4H0Z"/>
+</svg>

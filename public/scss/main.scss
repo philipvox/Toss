@@ -1,0 +1,460 @@
+@import 'reset';
+@import 'susy';
+@import "mixin";
+body {
+	padding: 0; 
+	margin: 0;
+	font-family:$sans;
+} 
+#myElement:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+}
+canvas {
+	position: fixed; 
+	vertical-align: top;
+} 
+$White:#ECEFF1;
+$GreyedLightOut:#B0BEC5;
+$GreyedDarkOut:#607D8B;
+$PrimaryColor:#FF3D00;
+
+$gravity:#FFEB3B;
+$Static:#9C27B0;
+$Link:#C5E1A5;
+$LinkActive:#64DD17;
+$Draw:#FF3636;
+$User:#64CFFF;
+
+.buttns{
+	// opacity: .5;
+}
+.logoTeaser{
+	width: 100%;
+	height:100%;
+	position: fixed;
+	left:0;
+	top:0px;
+	z-index: 100;
+	overflow:hidden;
+	transition: all .15s $Standard;
+	pointer-events:none;
+	img{
+		width:25%;
+		position: absolute;
+		top:50%;
+		left:50%;
+		transform: translate(-50%,-50%)
+	}
+}
+.toggleInfo{
+	top:8%;
+	left:4%;
+	width:100%;
+	height:100%;
+	position: fixed;
+	z-index: 10;
+	pointer-events:none;
+	mix-blend-mode:multiply;
+	font-family:$serif;
+	font-size:15vw;
+	color:$GreyedLightOut;
+	text-transform:capitalize;
+	transition:all .35s $Standard;
+	opacity:0;
+}
+.logo{
+	position: fixed;
+	left:5%;
+	top:3%;
+	width:100px;
+	img{
+		width:100%;
+	}
+}
+#login{
+	width:100%;
+	height:100%;
+	position: fixed;
+	// display:none;
+	background-color: $White;
+	z-index: 5000;
+
+	input{
+		width:80%;
+		position: fixed;
+		top:30%;
+		left:5%;
+		height:35px;
+		transform: translateY(-50%);
+		padding:0px;
+		font-size:30px;
+		text-align:left;
+		color:$PrimaryColor;
+		background-color: rgba(0,0,0,0);
+		border-bottom:1px solid $PrimaryColor;
+		transform-origin: center;
+		transition:all .15s $Standard;
+		font-family:$sans !important;
+		font-family:$serif;
+		&:focus{
+			outline:none;
+		}
+
+	}
+	#submit{
+		width:20%;
+		background-color:$PrimaryColor;
+		color:$White;
+		text-align:center;
+		top:30%;
+		left:auto !important;
+		right:10%;
+		font-size:15px;
+		font-family:$sans !important;
+		transition:all .15s $Standard;
+	    transform-origin: center;
+	    transform: translateY(-50%) scale(1);
+		&:hover{
+			background-color: #DD2C00;
+		}
+		&:focus{
+			outline: none;
+		}
+	}
+	
+	label{
+		position: fixed;
+		width:50%;
+		top:30%;
+		left:5%;
+		height:35px;
+		transform: translateY(-46%);
+		padding:10px;
+		font-size:35px;
+		color:$GreyedLightOut;
+		pointer-events:none;
+		font-family:$serif;
+		transition:all .15s $Standard;
+	}
+	input:focus + label{
+		top:23%;
+		font-size:10pt;
+	}
+	input:valid + label{
+		top:23%;
+		font-size:10pt;
+	}
+	.Homelink{
+		left:6%;
+		top:45%;
+		position: fixed;
+	}
+	a{
+		color:inherit;
+		text-decoration:none;
+		&:visited{
+			color:inherit;
+		}
+	}
+	h2{
+		color:$GreyedLightOut;
+		font-size:20px;
+		font-family:$serif;
+		padding-bottom: 25px;
+	}
+}
+@mixin IconEl(){
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	z-index: 20;
+	background-color: #FFF;
+	border-radius:50%;
+	pointer-events:none;
+}
+@mixin  IconUsers{
+	width: 60px;
+	height: 60px;
+	position: fixed;
+	z-index: 20;
+	// background-color: #FFF;
+	border-radius:50%;
+	// margin-bottom: 20px;
+	img{
+		height:70%;
+		transform: translate(-50%, -50%);
+	    top: 50%;
+	    left: 50%;
+		position:absolute;
+	}
+}
+@mixin IconEls(){
+	width: 60px;
+	height: 60px;
+	position: relative;
+	z-index: 20;
+	// background-color: #FFF;
+	border-radius:50%;
+	margin-bottom: 2%;
+	pointer-events:all;
+	img{
+		height:70%;
+		transform: translate(-50%, -50%);
+	    top: 50%;
+	    left: 50%;
+		position:absolute;
+	}
+}
+#delete{
+	@include IconEls();
+}
+.AllButtons{
+	position: fixed;
+	width:60px;
+	// height:500px;
+	right:10px;
+	// top:0;
+	z-index: 20;
+	// transform: translateY( -50%);
+    bottom: 10%;
+    pointer-events:none;
+	// overflow:hidden;
+}
+#users{
+	@include IconUsers();
+	// display:none;
+	top: 10px;
+	right:10px;
+}
+
+.infoRead{
+	width: 100%;
+    height: 40px;
+    font-family: sans-serif;
+    font-size: 12pt;
+    position: fixed;
+    z-index: 50;
+    background-color: #FFF;
+}
+.Sending-userlist{
+	height: 50px;
+    position: fixed;
+    right: 70px;
+    top: 10px;
+    z-index: 8;
+	transition: all .15s $Standard;
+	pointer-events:none;
+	li{
+	    position: relative;
+	    float: left;
+	    width: auto;
+	    list-style-type: none;
+	    margin-right: 15px;
+	    margin-left: 15px;
+	    top: 58%;
+	    transform: translateY(-50%);
+	    pointer-events:none;
+		span{
+			color: $GreyedLightOut;
+		}
+	}
+	.actievCount{
+		pointer-events:all !important;
+	}
+}
+.userlist-on{
+	right:0% !important;
+}
+.userlist{
+	width: 100%;
+	height:100%;
+	position: fixed;
+	right:-100%;
+	top:0px;
+	z-index: 8;
+	overflow-y:scroll;
+	overflow-x:hidden;
+	transition: all .15s $Standard;
+	border-bottom:1px;
+	pointer-events:none;
+	li{
+		position: relative;
+		float:left;
+		width:200px;
+		height: 50px;
+		background-color: rgba(0,0,0,0);
+		list-style-type: none;
+		margin:17px;
+	    border-bottom: 1px solid rgba(0, 0, 0, 0.14) !important;
+	    pointer-events:all !important;
+		span{
+		    transform: translateY(-52%);
+		    top: 50%;
+		    position: absolute;
+		    font-family: $sans;
+		}
+		&:hover{
+		}
+	}
+	.UserSelected{
+		border-left:10px solid $LinkActive;
+		span{
+			left:8%;
+		}
+		.addUser{
+			color: $Draw;
+		}
+	}
+	.You{
+		transform: translateY(-52%);
+	    top: 50%;
+	    right:0;
+	    position: absolute;
+	    color: $GreyedLightOut;
+	}
+	.addUser{
+		transform: translateY(-52%);
+	    top: 50%;
+	    right:0;
+	    position: absolute;
+	    color: $LinkActive;
+	}
+	// .MyName{
+	// 	// background-color: #eee;
+	// 	&:hover{
+	// 		// background-color: #eee;
+	// 		// box-shadow:  0px 0px 15px 0px $User;
+	// 		// box-shadow:  0px 0px 0px 0px rgba(0,0,0,0);
+	// 	}
+	// }
+}
+#gravity{
+	@include IconEls();
+}
+#shapes{
+	@include IconEls();
+}
+#linked{
+  @include IconEls();
+}
+#statics {
+  @include IconEls();
+}
+
+.slideOption{
+	width: 0;
+	height: 50px;
+	position: fixed;
+	right:85px;
+	top:10px;
+	z-index: 4;
+	background-color: #eee;
+	border-radius:20px;
+	transition: all .15s $Standard;
+	div{
+		display:none;
+		height:100%;
+		width: 20%;
+		transform: translateY(-50%);
+		top:50%;
+		position: relative;
+		float: left;
+
+	}
+	img{
+		transform: translate(-50%, -50%);
+		position: absolute;
+		top:50%;
+		left:50%;
+		height:50%;
+		pointer-events:none;
+	}
+	.active{
+		box-shadow:  2px 4px 5px 0px rgba(0,0,0,0.24);
+	}
+}
+.slideout{
+	width: 60%;
+}
+.gfeild{
+	left:0;
+	bottom:0;
+	transition: all .15s $Standard;
+	opacity:0;
+	z-index: 1;
+	position: fixed;
+	width:100%;
+	height:110%;
+	box-shadow: 0px 0px 0px 0px rgba(0,0,255,0.75);
+	pointer-events:none;
+}
+.dfeild{
+	left:0;
+	bottom:0;
+	transition: all .15s $Standard;
+	opacity:0;
+	z-index: 1;
+	position: fixed;
+	width:100%;
+	height:110%;
+	box-shadow: inset 0px 0px 0px 0px rgba(255,0,0,0.75);
+	pointer-events:none;
+}
+
+.showtog{
+	opacity:.3;
+}
+.shows{
+	opacity:1;
+	box-shadow:  2px 4px 5px 0px rgba(0,0,0,0.24);
+	transition: box-shadow .25s $Standard;
+	transition: opacity .15s $Standard;
+	background-color: $Static !important;
+	img{
+		mix-blend-mode:multiply;
+	}
+}
+.showu{
+	opacity:1;
+	box-shadow:  2px 4px 5px 0px rgba(0,0,0,0.24);
+	transition: box-shadow .25s $Standard;
+	transition: opacity .15s $Standard;
+	background-color: $User !important;
+	img{
+		mix-blend-mode:multiply;
+		transform: translate(-52%, -50%) rotate(45deg) !important;
+	}
+}
+.showl{
+	opacity:1;
+	box-shadow:  2px 4px 5px 0px rgba(0,0,0,0.24);
+	transition: box-shadow .25s $Standard;
+	transition: opacity .15s $Standard;
+	background-color: $Link !important;
+	img{
+		mix-blend-mode:multiply;
+	}
+}
+.showd{
+	opacity:1;
+	box-shadow:  2px 4px 5px 0px rgba(0,0,0,0.24);
+	transition: box-shadow .25s $Standard;
+	transition: opacity .15s $Standard;
+	background-color: $Draw !important;
+	img{
+		mix-blend-mode:multiply;
+	}
+}
+.show{
+	opacity:1;
+	// box-shadow:  0px 0px 15px 0px $gravity;
+	box-shadow:  2px 4px 5px 0px rgba(0,0,0,0.24);
+	transition: box-shadow .25s $Standard;
+	transition: opacity .15s $Standard;
+	background-color: $gravity !important;
+	img{
+		mix-blend-mode:multiply;
+	}
+}
+

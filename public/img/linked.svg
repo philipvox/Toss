@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="39.31" height="49.97" viewBox="0 0 39.31 49.97">
+  <defs>
+    <style>
+      .a {
+        fill: none;
+      }
+
+      .a, .b {
+        stroke: #231f20;
+        stroke-linejoin: round;
+        stroke-width: 4px;
+      }
+
+      .b {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>Asset 9</title>
+  <g>
+    <line class="a" x1="7.21" y1="24.93" x2="31.8" y2="42.46"/>
+    <circle class="b" cx="31.74" cy="42.52" r="5.46" transform="translate(-20.77 34.9) rotate(-45)"/>
+    <line class="a" x1="7.21" y1="24.93" x2="31.8" y2="7.4"/>
+    <circle class="b" cx="31.85" cy="7.46" r="5.46" transform="translate(4.06 24.71) rotate(-45)"/>
+    <circle class="b" cx="7.46" cy="25.17" r="5.46"/>
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="37.36" height="37.36" viewBox="0 0 37.36 37.36">
+  <defs>
+    <style>
+      .a {
+        fill: none;
+      }
+
+      .a, .b {
+        stroke: #231f20;
+        stroke-linejoin: round;
+        stroke-width: 1.91px;
+      }
+
+      .b {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>Asset 6 1</title>
+  <g>
+    <line class="a" x1="30.96" y1="30.96" x2="6.17" y2="6.17"/>
+    <circle class="b" cx="6.41" cy="6.41" r="5.46"/>
+    <circle class="b" cx="30.96" cy="30.96" r="5.46"/>
+  </g>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="43.54" height="43.54" viewBox="0 0 43.54 43.54">
+  <defs>
+    <style>
+      .a {
+        fill: #231f20;
+      }
+
+      .b, .c {
+        fill: none;
+        stroke: #231f20;
+        stroke-linejoin: round;
+      }
+
+      .b {
+        stroke-linecap: round;
+        stroke-width: 1.91px;
+      }
+
+      .c {
+        stroke-width: 1.91px;
+      }
+    </style>
+  </defs>
+  <title>Asset 2</title>
+  <g>
+    <circle class="a" cx="21.77" cy="21.77" r="5.46"/>
+    <path class="b" d="M21.77,21.77"/>
+    <path class="c" d="M17.77,10a12.44,12.44,0,1,1-5.42,3.65"/>
+    <path class="c" d="M41.1,29.48a20.82,20.82,0,1,1,1.48-7.71"/>
+    <circle class="a" cx="41.82" cy="25.53" r="1.49"/>
+    <circle class="a" cx="14.82" cy="11.4" r="1.49"/>
+  </g>
+</svg>

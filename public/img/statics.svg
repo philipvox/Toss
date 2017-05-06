@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="21.6" height="44.26" viewBox="0 0 21.6 44.26">
+  <defs>
+    <style>
+      .a {
+        fill: #fff;
+        stroke: #231f20;
+        stroke-linejoin: round;
+        stroke-width: 1.91px;
+      }
+    </style>
+  </defs>
+  <title>Asset 7 1</title>
+  <g>
+    <rect class="a" x="0.95" y="22.91" width="19.7" height="4.13"/>
+    <rect class="a" x="6.21" y="6.25" width="9.18" height="16.67"/>
+    <rect class="a" x="2.33" y="0.95" width="16.94" height="5.3"/>
+    <polygon class="a" points="13.53 27.04 10.8 43.3 8.07 27.04 13.53 27.04"/>
+  </g>
+</svg>

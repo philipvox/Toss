@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Matter</title>
+   
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    
+  </head>
+  <body id="myElement">
+  <!-- <div class="logoTeaser">
+       <img alt="tossalot" src="img/logo_n.svg">
+  </div> -->
+  <div class="toggleInfo">
+      gravity<br>on
+  </div>
+    <div id="login">
+        <div class="logo">
+           <!--  <img alt="tossalot" src="img/logo.svg"> -->
+        </div>
+        <form id="Usernames">
+            <input id="naming" required maxlength="10" name="Name" type="text"> 
+            <label id="namingLabel" for="Name">Name</label> 
+            <input id="submit" type="submit" value="JOIN">
+        </form>
+        <div class="Homelink">
+            <h2 id="Acc1"><a href="">How to Play</a></h2>
+            <h2 id="Acc2" ><a href="">Tips &amp Tricks</a></h2>
+        </div>
+    </div>
+    <div class="gfeild"></div>
+    <div class="dfeild"></div>
+    <div class="lfeild"></div>
+    <div class=" " id="users">
+        <img alt="users" src="img/NewIcons/u.svg">
+    </div>
+    <div class="Sending-userlist">
+        <!-- <li><span>Philip</span></li>
+        <li><span>Leland</span></li> -->
+    </div>
+    <div class="userlist" id="userlist">
+      <!--   <li data-id="Philip" class="MyName"><span class="data-names">Philip</span><div class="addUser">add</div></li>
+        <li data-id="Leland" ><span class="data-names">Leland</span><div class="addUser" >add</div></li>
+        <li data-id="Martins" ><span class="data-names">Martins</span><div class="addUser" >add</div></li> -->
+    </div>
+    <div class="AllButtons">
+        <div class="buttns" data-off="off" data-content="gravity<br>"  id="gravity">
+            <img alt="gravity" src="img/NewIcons/g.svg">
+        </div>
+         <div class="buttns" data-off="off" data-content="Drawing<br>" id="shapes">
+            <img alt="shapes" src="img/NewIcons/d.svg">
+        </div>
+        <div class="buttns"  data-off="off" data-content="Connections<br>" id="linked">
+            <img alt="shapes" src="img/NewIcons/l.svg">
+        </div>
+        <div class="buttns"  data-off="off" data-content="Static<br>" id="statics">
+            <img alt="statics" src="img/NewIcons/s.svg">
+        </div>
+         <div class="buttns"  data-off="off" data-content="delete<br>" id="delete">
+            <img alt="statics" src="img/NewIcons/delete.svg">
+        </div>
+    </div>
+    <div class="buttns slideOption">
+        <div id="text_btn"><img alt="shapes" src="img/05.svg"></div>
+        <div id="emoji"><img alt="shapes" src="img/04.svg"></div>
+        <div id="poly"><img alt="shapes" src="img/03.svg"></div>
+        <div id="circle"><img alt="shapes" src="img/02.svg"></div>
+        <div id="square"><img alt="shapes" src="img/01.svg"></div>
+    </div>
+    
+    <div id='myContainer'></div>
+    
+    <!-- SCRIPTS -->
+    <script src="libraries/matter.js" type="text/javascript"></script>
+    <script src="libraries/matter-collision-events.js " type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+    </script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.js">
+    </script> 
+    <script src="https://hammerjs.github.io/dist/hammer.js">
+    </script> 
+    <script src="libraries/p5.js" type="text/javascript">
+    </script> 
+    <script src="libraries/p5.dom.js" type="text/javascript"></script>
+    <!-- <script src="libraries/p5.sound.js" type="text/javascript"></script> -->
+    <script src="js/box.js" type="text/javascript">
+    </script> 
+    <script src="js/sketch.js" type="text/javascript">
+    </script>
+
+    <script src="js/users.js" type="text/javascript">
+    </script> 
+    <script src="js/rope.js" type="text/javascript">
+    </script> 
+  </body>
+</html>

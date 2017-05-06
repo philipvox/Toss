@@ -1,0 +1,69 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800';
+@import url('https://fonts.googleapis.com/css?family=Inknut+Antiqua:300,400,700,900');
+
+@font-face {
+  font-family: 'FN';
+  src: url('./FN_B/fengardoneue_regular-webfont.eot'), /* IE9 Compat Modes */
+       url('./FN_B/fengardoneue_regular-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('./FN_B/fengardoneue_regular-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+@font-face {
+  font-family: 'BluN';
+  src: url('./BluN-B/bluunext-bold-webfont.eot'), /* IE9 Compat Modes */
+       url('./BluN-B/bluunext-bold-webfont.woff') format('woff'), /* Pretty Modern Browsers */
+       url('./BluN-B/bluunext-bold-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+$Standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+$Deceleration: cubic-bezier(0.0, 0.0, 0.2, 1);
+$Acceleration: cubic-bezier(0.4, 0.0, 1, 1);
+$Sharp:cubic-bezier(0.4, 0.0, 0.6, 1);
+
+$serif:'BluN', serif;
+$sans: 'FN', sans-serif;
+
+$break-smallest:20px;
+$break-small:600px;
+$break-medium:1200px;
+$break-large:2400px;
+
+$susy: (
+    columns:12,
+    gutters:0,
+    gutter-position: inside,
+);
+
+@mixin respond-to($media) {
+	@if $media == SmallPhones {
+		@media only screen and (max-width: $break-smaller) { @content; }
+	}
+	@else if $media == Phone {
+		@media only screen and (min-device-width: $break-small + 1) and (max-device-width: $break-large - 1) { @content; }
+	}
+	@else if $media == Small{
+		@media only screen and (min-width: $break-smallest + 1) and (max-width: $break-small - 1) { @content; }
+	}
+	@else if $media == Medium{
+		@media only screen and (min-width: $break-small + 1) and (max-width: $break-medium - 1) { @content; }
+	}
+	@else if $media == large{
+		@media only screen and (min-width: $break-medium + 1) and (max-width: $break-large - 1) { @content; }
+	}
+}
+@mixin time($timing){
+	@if $timing == Standard {
+		transition: all .15s $Standard;
+	}
+	@else if $timing == Deceleration {
+		transition: all .35s $Deceleration;
+	}
+	@else if $timing == Acceleration{
+		transition: all .5s $Acceleration;
+	}
+	@else if $timing == Sharp{
+		transition: all .15s $Sharp;
+	}
+	
+}
+
+

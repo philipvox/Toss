@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40.76" height="40.76" viewBox="0 0 40.76 40.76">
+  <defs>
+    <style>
+      .a {
+        fill: none;
+        stroke: #231f20;
+        stroke-linejoin: round;
+        stroke-width: 1.91px;
+      }
+    </style>
+  </defs>
+  <title>Asset 1</title>
+  <g>
+    <circle class="a" cx="10.58" cy="10.58" r="9.62"/>
+    <rect class="a" x="21.27" y="21.27" width="18.54" height="18.54"/>
+  </g>
+</svg>

@@ -1,0 +1,88 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "matter-collision-events",
+        "scope": null,
+        "escapedName": "matter-collision-events",
+        "name": "matter-collision-events",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/Users/PhilipGlenn/Desktop/Website/Matter_node"
+    ]
+  ],
+  "_from": "matter-collision-events@latest",
+  "_id": "matter-collision-events@0.1.5",
+  "_inCache": true,
+  "_location": "/matter-collision-events",
+  "_nodeVersion": "7.2.1",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/matter-collision-events-0.1.5.tgz_1487491269096_0.3853454503696412"
+  },
+  "_npmUser": {
+    "name": "nodxu",
+    "email": "xudavidb@gmail.com"
+  },
+  "_npmVersion": "3.10.9",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "matter-collision-events",
+    "scope": null,
+    "escapedName": "matter-collision-events",
+    "name": "matter-collision-events",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/matter-collision-events/-/matter-collision-events-0.1.5.tgz",
+  "_shasum": "39edbb3045b72cc5baa86e0b0bc5f1d4eba3b91d",
+  "_shrinkwrap": null,
+  "_spec": "matter-collision-events",
+  "_where": "/Users/PhilipGlenn/Desktop/Website/Matter_node",
+  "author": {
+    "name": "dxu"
+  },
+  "bugs": {
+    "url": "https://github.com/dxu/matter-collision-events/issues"
+  },
+  "dependencies": {
+    "matter-js": "0.12.0"
+  },
+  "description": "Matter.js body collisions events plugin",
+  "devDependencies": {
+    "webpack": "^2.2.1"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "39edbb3045b72cc5baa86e0b0bc5f1d4eba3b91d",
+    "tarball": "https://registry.npmjs.org/matter-collision-events/-/matter-collision-events-0.1.5.tgz"
+  },
+  "gitHead": "49d351a26f0c2bdd0048ab6147d18e60bf7f4e89",
+  "homepage": "https://github.com/dxu/matter-collision-events#readme",
+  "license": "ISC",
+  "main": "build/matter-collision-events.min.js",
+  "maintainers": [
+    {
+      "name": "nodxu",
+      "email": "xudavidb@gmail.com"
+    }
+  ],
+  "name": "matter-collision-events",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dxu/matter-collision-events.git"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "test": "echo \"x_x\" && exit 1"
+  },
+  "version": "0.1.5"
+}

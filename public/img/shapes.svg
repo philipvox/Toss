@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="38.85" height="38.85" viewBox="0 0 38.85 38.85">
+  <defs>
+    <style>
+      .a {
+        fill: #231f20;
+      }
+    </style>
+  </defs>
+  <title>Asset 10</title>
+  <g>
+    <circle class="a" cx="9.62" cy="9.62" r="9.62"/>
+    <rect class="a" x="20.32" y="20.32" width="18.54" height="18.54"/>
+  </g>
+</svg>
