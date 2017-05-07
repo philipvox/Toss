@@ -99,7 +99,7 @@ function setup() {
     fl = new Boundry(width / 2, height + (wallWidth / 2), width, wallWidth);
     wallR = new Boundry(width + (wallWidth / 2), height / 2, wallWidth, height + 1000);
     wallL = new Boundry(0 - (wallWidth / 2), height / 2, wallWidth, height + 1000);
-    // topfl = new Boundry(width / 2, 0 - (wallWidth / 2), width, wallWidth);
+    topfl = new Boundry(width / 2, 0 - (wallWidth / 2), width, wallWidth);
     mouseCon();
     // colCheck();
     // MakeRope(4,40,100);
@@ -166,17 +166,17 @@ function draw() {
         DrawingSelected();
     }
     
-    // if (Object.keys(ActiveUser).length == 0) {
-    //     if (topfl === 'nothing') {
-    //         topfl = new Boundry(width / 2, 0 - (wallWidth / 2), width, wallWidth);
-    //         topfl.show();
-    //     }
-    // }else{
-    //     if (topfl != 'nothing') {
-    //         topfl.removeFromWorld();
-    //         topfl = 'nothing';
-    //     }
-    // }
+    if (Object.keys(ActiveUser).length == 0) {
+        if (topfl === 'nothing') {
+            topfl = new Boundry(width / 2, 0 - (wallWidth / 2), width, wallWidth);
+            topfl.show();
+        }
+    }else{
+        if (topfl != 'nothing') {
+            topfl.removeFromWorld();
+            topfl = 'nothing';
+        }
+    }
     Engine.update(engine);
 }
 
