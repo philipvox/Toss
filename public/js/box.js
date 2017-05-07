@@ -153,7 +153,7 @@ function allTrue(obj){
         var rect = [3,3,3,3,5,5]
         var keysArray = [];
         var keys = Object.keys(obj);
-        var keysSorted = Object.values(obj).sort(function(a,b){return obj[a]-obj[b]})
+        var keysSorted = Object.values(obj).sort(function(a,b){return if (obj[a] != undefined)&&(obj[b] != undefined) {obj[a]-obj[b]}})
         for (var i = 0; i < keys.length; i++) {
             var val = obj[keys[i]];
             keysArray.push(val);
