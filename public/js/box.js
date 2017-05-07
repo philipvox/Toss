@@ -147,30 +147,32 @@ function MakeSquare(bool, Tbody, elements, i) {
     
 }
 function allTrue(obj){
-    var spr = [3,3,3,3]
-    var tri = [2,2,2]
-    var rect = [3,3,3,3,5,5]
-    var keysArray = [];
-    var keys = Object.keys(obj);
-    var keysSorted = Object.values(obj).sort(function(a,b){return obj[a]-obj[b]})
-    for (var i = 0; i < keys.length; i++) {
-        var val = obj[keys[i]];
-        keysArray.push(val);
-    }
-    if (keysArray.equals(spr)) {
-        // console.log('spr');
-        dots.push(new dot(squareMaker, 'spr'));
-        squareMaker =[];
-    }
-    if (keysArray.equals(tri)) {
-        // console.log('tri');
-        dots.push(new dot(squareMaker, 'tri'));
-        squareMaker =[];
-    }
-    if (keysArray.equals(rect)) {
-        // console.log('rect');
-        dots.push(new dot(squareMaker, 'rect'));
-        squareMaker =[];
+    if (obj != undefined) {
+        var spr = [3,3,3,3]
+        var tri = [2,2,2]
+        var rect = [3,3,3,3,5,5]
+        var keysArray = [];
+        var keys = Object.keys(obj);
+        var keysSorted = Object.values(obj).sort(function(a,b){return obj[a]-obj[b]})
+        for (var i = 0; i < keys.length; i++) {
+            var val = obj[keys[i]];
+            keysArray.push(val);
+        }
+        if (keysArray.equals(spr)) {
+            // console.log('spr');
+            dots.push(new dot(squareMaker, 'spr'));
+            squareMaker =[];
+        }
+        if (keysArray.equals(tri)) {
+            // console.log('tri');
+            dots.push(new dot(squareMaker, 'tri'));
+            squareMaker =[];
+        }
+        if (keysArray.equals(rect)) {
+            // console.log('rect');
+            dots.push(new dot(squareMaker, 'rect'));
+            squareMaker =[];
+        }
     }
 }
 
