@@ -44,3 +44,18 @@ function distSquared(x1, y1, x2, y2) {
     var dy = y2 - y1;
     return dx * dx + dy * dy;
 }
+function RopePulled(obj, rope, i) {
+    if (obj.label == rope[i].body.label) {
+        if (rope[i].Ropelast == true) {
+            roppped(rope[i].body.position);
+            LastRope = true;
+            ropeEl = rope[i];
+        }
+    }
+}
+var RopeY;
+var RopeX;
+function roppped(data) {
+        RopeY= data.y;
+        RopeX = data.x;
+}

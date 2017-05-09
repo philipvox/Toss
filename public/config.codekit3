@@ -351,6 +351,26 @@
 		"plM": 3758088159,
 		"prP": 0
 		},
+	"\/img\/NewIcons\/t.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/img\/NewIcons\/t.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
+	"\/img\/NewIcons\/t_c.svg": {
+		"ft": 2097152,
+		"miP": 0,
+		"oA": 2,
+		"oAP": "\/img\/NewIcons\/t_c.svg",
+		"oF": 0,
+		"opt": 0,
+		"plM": 3758088159,
+		"prP": 0
+		},
 	"\/img\/NewIcons\/u.svg": {
 		"ft": 2097152,
 		"miP": 0,
@@ -437,15 +457,6 @@
 		"oAP": "\/index.html",
 		"oF": 0
 		},
-	"\/js\/box-min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/js\/box-min-min.js",
-		"oF": 0,
-		"sC": 1,
-		"tS": 0
-		},
 	"\/js\/box.js": {
 		"ft": 64,
 		"mi": 0,
@@ -455,18 +466,54 @@
 		"sC": 0,
 		"tS": 0
 		},
-	"\/js\/rope-min.js": {
+	"\/js\/Builder-min.js": {
 		"ft": 64,
 		"mi": 1,
 		"oA": 0,
-		"oAP": "\/js\/rope-min-min.js",
+		"oAP": "\/js\/Builder-min-min.js",
 		"oF": 0,
-		"sC": 1,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/js\/Builder.js": {
+		"ft": 64,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "\/js\/Builder-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/js\/ClickControllers.js": {
+		"ft": 64,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "\/js\/ClickControllers-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/js\/Constructors.js": {
+		"ft": 64,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "\/js\/Constructors-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/js\/ObjectDrawing.js": {
+		"ft": 64,
+		"mi": 0,
+		"oA": 0,
+		"oAP": "\/js\/ObjectDrawing-min.js",
+		"oF": 0,
+		"sC": 0,
 		"tS": 0
 		},
 	"\/js\/rope.js": {
 		"ft": 64,
-		"mi": 1,
+		"mi": 0,
 		"oA": 0,
 		"oAP": "\/js\/rope-min.js",
 		"oF": 0,
@@ -479,7 +526,7 @@
 		"oA": 0,
 		"oAP": "\/js\/sketch-min-min.js",
 		"oF": 0,
-		"sC": 1,
+		"sC": 0,
 		"tS": 0
 		},
 	"\/js\/sketch.js": {
@@ -497,7 +544,7 @@
 		"oA": 0,
 		"oAP": "\/js\/users-min-min.js",
 		"oF": 0,
-		"sC": 1,
+		"sC": 0,
 		"tS": 0
 		},
 	"\/js\/users.js": {
@@ -505,6 +552,15 @@
 		"mi": 0,
 		"oA": 0,
 		"oAP": "\/js\/users-min.js",
+		"oF": 0,
+		"sC": 0,
+		"tS": 0
+		},
+	"\/js\/windowActions.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/windowActions-min.js",
 		"oF": 0,
 		"sC": 0,
 		"tS": 0
