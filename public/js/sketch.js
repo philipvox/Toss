@@ -197,7 +197,7 @@ function SendBallConstructor(elements, i, x, y, force) {
             sentCount: BallsOut,
             color: elements[i].color,
             lat:my.lat,
-            long:my.lon;
+            long:my.lon
         };
         BallsOutArr.push(ball);
         ballsOut();
