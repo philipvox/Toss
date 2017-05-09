@@ -79,7 +79,7 @@ function setup() {
 
     function success(pos) {
       var crd = pos.coords;
-
+      $('#Acc1').html(`More or less ${crd.accuracy} meters.`)
       console.log('Your current position is:');
       console.log(`Latitude : ${crd.latitude}`);
       console.log(`Longitude: ${crd.longitude}`);
