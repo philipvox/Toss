@@ -246,11 +246,9 @@ function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
 function InitDrawing(data) {
-
-    console.log(getDistanceFromLatLonInKm(data.lat,data.lon,my.lat,my.lon,));
-
     var prev = [];
     if (data.length == 1) {
+        console.log(getDistanceFromLatLonInKm(data[0].lat,data[0].lon,my.lat,my.lon,));
         var x = data[0].x;
         var y = 0;
         var r = data[0].CRadius;
@@ -267,6 +265,7 @@ function InitDrawing(data) {
         var c = new circ(x, y, r, bounce, friction, id, force, connection, color);
         elements.push(c);
     }else{
+        console.log(getDistanceFromLatLonInKm(data[0].lat,data[0].lon,my.lat,my.lon,));
         for (var i = 0; i < data.length; i++) {
             var x = data[i].x;
             var y = 0;
