@@ -50,7 +50,7 @@ var fl;
 var wallL;
 var wallR;
 var topfl;
-
+var my;
 p5.disableFriendlyErrors = true;
 
 engine = Engine.create();
@@ -84,6 +84,8 @@ function setup() {
       console.log(`Latitude : ${crd.latitude}`);
       console.log(`Longitude: ${crd.longitude}`);
       console.log(`More or less ${crd.accuracy} meters.`);
+      my = {lat:crd.latitude, lon:crd.longitude};
+
     };
 
     function error(err) {
@@ -192,7 +194,10 @@ function SendBallConstructor(elements, i, x, y, force) {
             Type: elements[i].type,
             connections: elements[i].connections,
             force: force,
-            sentCount: BallsOut
+            sentCount: BallsOut,
+            color: elements[i].color
+            lat:my.lat
+            long:my.lon;
         };
         BallsOutArr.push(ball);
         ballsOut();
@@ -223,7 +228,27 @@ function ballsOut() {
         }
     }, 500);
 }
+function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2-lat1);  // deg2rad below
+  var dLon = deg2rad(lon2-lon1); 
+  var a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2)
+    ; 
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  var d = R * c; // Distance in km
+  return d;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180)
+}
 function InitDrawing(data) {
+
+    console.log(getDistanceFromLatLonInKm(data.lat,data.lon,my.lat,my.lon,));
+
     var prev = [];
     if (data.length == 1) {
         var x = data[0].x;
@@ -238,7 +263,8 @@ function InitDrawing(data) {
         var sentCount = data[0].sentCount;
         var type = data[0].Type;
         var connection = data[0].connections
-        var c = new circ(x, y, r, bounce, friction, id, force, connection);
+        var color = data[0].color
+        var c = new circ(x, y, r, bounce, friction, id, force, connection, color);
         elements.push(c);
     }else{
         for (var i = 0; i < data.length; i++) {
@@ -254,7 +280,8 @@ function InitDrawing(data) {
             var sentCount = data[i].sentCount;
             var type = data[i].Type;
             var connection = data[i].connections
-            var c = new circ(x, y, r, bounce, friction, id, force, connection);
+            var color = data[i].color
+            var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
             elements.push(c);
             if (prev){
                     var first,second;
