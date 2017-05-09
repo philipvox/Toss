@@ -1,24 +1,32 @@
+var standColor = "#2962FF";
 
-function circ(x, y, r, bounce, friction, Id, force, connect) {
+function circ(x, y, r, bounce, friction, Id, force, connect,color) {
     var options = {
         friction: friction,
         restitution: bounce,
-        // density: .01 / r
+    }
+    if (r > 1) {
+        r = r
+    }else{
+        r = 1
     }
     this.body = Bodies.circle(x, y, roundUp(r, .1), options);
     World.add(world, this.body)
     this.body.label = Id;
+    this.label = Id;
     this.body.isText = false;
     this.r = roundUp(r, .1);
-    this.color = "#2962FF";
-    this.OGcolor = "#2962FF";
+    this.OGcolor = standColor;
     this.stroke = false;
     this.static = false;
     this.strokeColor = 'black';
     this.type = 'circle';
     this.connections = [];
-    this.connectionsA = [];
-    this.connectionsB = [];
+    this.color = standColor;
+
+    if (color) {
+        this.color = color;
+    }
     if (connect) {
         this.connections = connect;
     }
@@ -28,6 +36,7 @@ function circ(x, y, r, bounce, friction, Id, force, connect) {
     if (this.static) {
         this.body.isStatic = true;
     }
+
     this.Ropelast;
     this.RopeFirst;
     this.show = function() {

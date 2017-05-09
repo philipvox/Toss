@@ -7,14 +7,14 @@ var staticEl = document.getElementById('statics');
 var gravvityEl = document.getElementById('gravity');
 var UsersEl = document.getElementById('users');
 var deleteEL = document.getElementById('delete');
-var TextEL = document.getElementById('text');
+// var TextEL = document.getElementById('text');
 var DrawHammer = new Hammer(drawEl);
 var GravityHammer = new Hammer(gravvityEl);
 var LinkedHammer = new Hammer(linkel);
 var StaticHammer = new Hammer(staticEl);
 var UsersHammer = new Hammer(UsersEl);
 var DeleteHammer = new Hammer(deleteEL);
-var TextHammer = new Hammer(TextEL);
+// var TextHammer = new Hammer(TextEL);
 //Triggers 
 var ShapesActive = false;
 var GravityActive = false;
@@ -240,34 +240,35 @@ DeleteHammer.on("tap", function(ev) {
         Engine.update(engine);
     }
 });
-TextHammer.on("tap", function(ev) {
+// TextHammer.on("tap", function(ev) {
   
-    var Tapped = buttonClicker(TextActive, '#text', 't');
-    TextActive = Tapped.one;
-});
-$( "#text" ).click(function() {
-    $("#texts").show();
-    document.getElementById("textinput").focus();
-});
-$("#texts").submit(function(event) {
-    event.preventDefault();
-    var value = $('#textinput').val();
-    console.log(value)
-    var fontsize = 24;
-    var text = value;
-    var x = width/2;
-    var y = height/2;
-    var h = fontsize;
-    var w = textWidth(value);
-    console.log(fontsize);
-    console.log(w*2);
-    elements.push(new textDynamic(text,x, y, w*2,h, fontsize, bounced, frictioned,  UniqueID()));
-    console.log('hello');
-    var Tapped = buttonClicker(TextActive, '#text', 't');
-    TextActive = Tapped.one;
-    $('#textinput').val('');
-    $("#texts").hide();
-});
+//     var Tapped = buttonClicker(TextActive, '#text', 't');
+//     TextActive = Tapped.one;
+// });
+// $( "#text" ).click(function() {
+//     $("#texts").show();
+//     document.getElementById("textinput").focus();
+// });
+
+// $("#texts").submit(function(event) {
+//     event.preventDefault();
+//     var value = $('#textinput').val();
+//     console.log(value)
+//     var fontsize = 24;
+//     var text = value;
+//     var x = width/2;
+//     var y = height/2;
+//     var h = fontsize;
+//     var w = textWidth(value);
+//     console.log(fontsize);
+//     console.log(w*2);
+//     elements.push(new textDynamic(text,x, y, w*2,h, fontsize, bounced, frictioned,  UniqueID()));
+//     console.log('hello');
+//     var Tapped = buttonClicker(TextActive, '#text', 't');
+//     TextActive = Tapped.one;
+//     $('#textinput').val('');
+//     $("#texts").hide();
+// });
 $('.buttns').children().click(function() {
     var content = $(this).parent().attr('data-content');
     var dataOff = $(this).parent().attr('data-off');

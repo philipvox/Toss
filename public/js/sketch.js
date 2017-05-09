@@ -50,13 +50,14 @@ var fl;
 var wallL;
 var wallR;
 var topfl;
-var my;
+var my = {};
 p5.disableFriendlyErrors = true;
 
 engine = Engine.create();
 world = engine.world;
 // var rope = [];
 // Matter.use('matter-collision-events');
+
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent('myContainer');
@@ -84,7 +85,9 @@ function setup() {
       console.log(`Latitude : ${crd.latitude}`);
       console.log(`Longitude: ${crd.longitude}`);
       console.log(`More or less ${crd.accuracy} meters.`);
-      my = {lat:crd.latitude, lon:crd.longitude};
+      my['lat'] = crd.latitude
+      my['lon'] = crd.longitude;
+      console.log(my);
 
     };
 
@@ -93,7 +96,8 @@ function setup() {
     };
 
     navigator.geolocation.getCurrentPosition(success, error, options);
-
+    
+    
 }
 function draw() {
     background('#ECEFF1');
