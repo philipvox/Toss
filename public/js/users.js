@@ -25,7 +25,6 @@ var deleteActive = false;
 var mobileON = false;
 var TextActive = false;
 var actv_btn = "circle";
-
 $("#Usernames").submit(function(event) {
     event.preventDefault();
     var value = $('#naming').val();
@@ -47,7 +46,6 @@ $("#Usernames").submit(function(event) {
     return false;
 });
 var AllUsers = {};
-
 function userUpdate(data) {
     $('.userlist').html('');
     var AllUsers = {};
@@ -100,7 +98,6 @@ function userUpdate(data) {
     // console.log(data);    
     socket.emit('updateActive', ActiveUser);
 }
-
 function AddToActiveList() {
     $('.Sending-userlist').html('');
     for (var i = 0; i < Object.keys(ActiveUser).length; i++) {
@@ -136,37 +133,27 @@ function AddToActiveList() {
         }
     }  
 }
-
 $(function() {
     $('#naming').on('keypress', function(e) {
         if (e.which == 32) return false;
     });
 });
-
-
 function DrawingSelected() {
     if (ShapesActive === true) {
-        var bsX = startV.x
-        var bsY = startV.y
-        var bw = roundUp(mouseX - startV.x, .1)
-        var bh = roundUp(mouseY - startV.y, .1)
-
-        push();
-        rectMode(CENTER);
-        stroke('blue');
-        noFill();
-        if (actv_btn === 'square') {
-            rect(startV.x, startV.y, bw, bh);
-        } else if (actv_btn === 'circle') {
-            ellipse(startV.x, startV.y, bw * 2, bw * 2);
-        } else if (actv_btn === 'poly') {
-            rect(startV.x, startV.y, bw, bh);
-        } else if (actv_btn === 'emoji') {
-            ellipse(startV.x, startV.y, bw * 2, bw * 2);
-        } else if (actv_btn === 'text_btn') {
-            rect(startV.x, startV.y, bw, bh);
+        if (TouchDrawing) {
+            var bsX = startV.x
+            var bsY = startV.y
+            var bw = roundUp(mouseX - startV.x, .1)
+            var bh = roundUp(mouseY - startV.y, .1)
+            push();
+                rectMode(CENTER);
+                stroke('blue');
+                noFill();
+                if (actv_btn === 'circle') {
+                    ellipse(startV.x, startV.y, bw * 2, bw * 2);
+                }
+            pop();
         }
-        pop();
     }
 }
 function buttonClicker(bool, Mainlink, MImage, Removelink, RemoveImage, RemoveBool) {
@@ -202,19 +189,36 @@ LinkedHammer.on("tap", function(ev) {
     var Tapped = buttonClicker(LinksActive, '#linked', 'l', '#shapes', 'd', ShapesActive);
     LinksActive = Tapped.one;
     ShapesActive = Tapped.two;
+    clickStopped = false;
+    setTimeout(function() {
+        clickStopped = true;
+    }, 200);
 });
+var clickStopped = true;
 DrawHammer.on("tap", function(ev) {
     var Tapped = buttonClicker(ShapesActive, '#shapes', 'd', '#linked', 'l', LinksActive);
     ShapesActive = Tapped.one;
     LinksActive = Tapped.two;
+    clickStopped = false;
+    setTimeout(function() {
+        clickStopped = true;
+    }, 200);
 });
 GravityHammer.on("tap", function(ev) {
     var Tapped = buttonClicker(GravityActive, '#gravity', 'g');
     GravityActive = Tapped.one;
+    clickStopped = false;
+    setTimeout(function() {
+        clickStopped = true;
+    }, 200);
 });
 StaticHammer.on("tap", function(ev) {
     var Tapped = buttonClicker(StaticActive, '#statics', 's');
     StaticActive = Tapped.one;
+    clickStopped = false;
+    setTimeout(function() {
+        clickStopped = true;
+    }, 200);
 });
 UsersHammer.on("tap", function(ev) {
     if (UserActive === false) {
@@ -224,6 +228,10 @@ UsersHammer.on("tap", function(ev) {
     }
     var Tapped = buttonClicker(UserActive, '#users', 'u');
     UserActive = Tapped.one;
+    clickStopped = false;
+    setTimeout(function() {
+        clickStopped = true;
+    }, 200);
 });
 DeleteHammer.on("tap", function(ev) {
     if (deleteActive === false) {
@@ -239,6 +247,10 @@ DeleteHammer.on("tap", function(ev) {
         $('#delete').children('img').attr('src', 'img/NewIcons/delete.svg');
         Engine.update(engine);
     }
+    clickStopped = false;
+    setTimeout(function() {
+        clickStopped = true;
+    }, 200);
 });
 // TextHammer.on("tap", function(ev) {
   

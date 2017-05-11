@@ -53,8 +53,19 @@ function dot(arr, string) {
     var options = {
         friction: 1,
         restitution: 1,
-        desity: .01 / 2
-    }
+        plugin:{
+            attractors: [
+              function(bodyA, bodyB) {
+                return {
+                  x: (bodyA.position.x - bodyB.position.x) * 5e-6,
+                  y: (bodyA.position.y - bodyB.position.y) * 5e-6,
+                };
+              }
+            ]
+          }
+         
+    }  
+   
     this.array = arr;
     this.Center = GetCenter(this.array);
     this.x = this.Center.x;
@@ -66,26 +77,33 @@ function dot(arr, string) {
     this.childernlabels = [];
     this.body.label = 'centerBall';
     World.add(world, this.body);
-    // console.log(this.childern);
-    
     if (string == 'tri') {
         this.color = '#76FF03'
         CollisionDetection(this.childern,'#76FF03')
         Engine.update(engine);
     }
+    if (string == 'spr') {
+        Engine.update(engine);
+        wallR.removeFromWorld();
+        wallL.removeFromWorld();
+    }
+    Engine.update(engine);
+    console.log(this.body.plugin)
     this.show = function() {
         this.Center = GetCenter(this.childern)
         this.x = this.Center.x;
         this.y = this.Center.y;
+        this.body.position.x = this.x
+        this.body.position.y = this.y
         var pos = this.body.position;
         var angle = this.body.angle;
         push();
-        translate(this.x, this.y);
-        rotate(angle);
-        rectMode(CENTER);
-        noStroke();
-        fill('red');
-        ellipse(0, 0, this.r * 2, this.r * 2);
+            translate(this.x, this.y);
+            rotate(angle);
+            rectMode(CENTER);
+            noStroke();
+            fill('red');
+            ellipse(0, 0, this.r * 2, this.r * 2);
         pop();
     }
     this.removeFromWorld = function() {
@@ -109,41 +127,85 @@ function removeDuplicates(originalArray, objKey,label) {
   return trimmedArray;
 
 }
+function removeDuplicates(originalArray, objKey,objKey2) {
+  var trimmedArray = [];
+  var values = [];
+  var value;
+  var value2;
+
+  for(var i = 0; i < originalArray.length; i++) {
+    value = originalArray[i][objKey];
+    value2 = originalArray[i][objKey2];
+    if(values.indexOf(value) === -1) {
+        if(values.indexOf(value2) === -1) {
+          trimmedArray.push(originalArray[i]);
+          values.push(value);
+      }
+    }
+  }
+
+  return trimmedArray;
+
+}
 function CollisionDetection(array, colors) {
-    Matter.Events.on(engine, 'collisionEnd', function(e) {
+    Matter.Events.on(engine, 'collisionActive', function(e) {
         for (var i = 0; i < array.length; i++) {
             var colObj;
             colObj = array[i];
             colObj.color = colors;
-            for (x = 0; x < e.pairs.length; x++) {
-                var oBody = colObj.body.label
-                var aBody = e.pairs[x].bodyA.label
-                var bBody = e.pairs[x].bodyB.label
-                pair = e.pairs[x];
-                if (!(aBody === oBody || bBody === oBody)) {
-                    continue;
-                }
-                if (bBody != "Rectangle Body") {
-                        if (bBody != oBody) {
-                            console.log('A:' + aBody);
-                            console.log('B:' + bBody);
-                            console.log('Boddy:' + oBody);
-                            for (var s = 0; s < elements.length; s++) {
-                                if (elements[s].body.label == bBody) {
-                                    for (var m = 0; m < array.length; m++) {
-                                        if (elements[s].body.label != array[m].body.label) {
-                                            elements[s].color = colors;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-              }
+            
+            // for (x = 0; x < e.pairs.length; x++) {
+            //     var oBody = colObj.body.label
+            //     var aBody = e.pairs[x].bodyA.label
+            //     var bBody = e.pairs[x].bodyB.label
+            //     pair = e.pairs[x];
+            //     function aBodyCheck(e) {
+            //         return e.body.label == aBody
+            //     }
+            //     function bBodyCheck(e) {
+            //         return e.body.label == bBody
+            //     }
+            //     if (aBody != 'Rectangle Body') {
+            //         if (bBody != 'Rectangle Body')  {
+            //             var m = oBody == aBody;
+            //             var b = oBody == bBody;
+            //             if (oBody == aBody) {
+            //                 if (bBody != oBody) {
+            //                     console.log('abody'+oBody);
+            //                 }
+            //             }
+            //             if (oBody == bBody) {
+            //                 if (aBody != oBody) {
+            //                     console.log('bbody'+oBody);
+            //                 }
+            //                 //do something to a body
+                            
+                            
+            //             }
+                        
+                        
+                        
+
+            //             // console.log(bBody);
+            //         }
+                    
+            //     }
+                
+
+            //   }
             }  
     });
 }
-
+function notequalto(element, index, array, val) {
+  return element >= val;
+}
+function ColDelete(bBody,array) {
+    for (var s = 0; s < elements.length; s++) {
+        if (elements[s].body.label == bBody) {
+             elements[s].color = 'red';   
+        }
+}
+}
 function actionOnGroup(coll, color) {
     for (var d = 0; d < elements.length; d++) {
         if (coll == elements[d].body.label) {

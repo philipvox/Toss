@@ -12,6 +12,7 @@ function mouseCon() {
     // On Mouse Down Matter js
     Matter.Events.on(MouseMatter, "mousedown", function() {
         if (this.body != null) {
+            console.log(this.body);
             for (var i = 0; i < elements.length; i++) {
                 if (elements[i].body.label === this.body.label) {
                     elStatic(StaticActive, this.body, elements, i);

@@ -484,6 +484,15 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"\/js\/ClickControllers-min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/ClickControllers-min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"\/js\/ClickControllers.js": {
 		"ft": 64,
 		"mi": 0,
@@ -500,6 +509,15 @@
 		"oAP": "\/js\/Constructors-min.js",
 		"oF": 0,
 		"sC": 0,
+		"tS": 0
+		},
+	"\/js\/ObjectDrawing-min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/ObjectDrawing-min-min.js",
+		"oF": 0,
+		"sC": 1,
 		"tS": 0
 		},
 	"\/js\/ObjectDrawing.js": {
@@ -574,6 +592,24 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"\/libraries\/matter-attractors-min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/libraries\/matter-attractors-min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/libraries\/matter-attractors.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/libraries\/matter-attractors-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"\/libraries\/matter-collision-events-min.js": {
 		"ft": 64,
 		"mi": 1,
@@ -597,6 +633,15 @@
 		"mi": 1,
 		"oA": 0,
 		"oAP": "\/libraries\/matter-min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
+	"\/libraries\/matter-wrap.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/libraries\/matter-wrap-min.js",
 		"oF": 0,
 		"sC": 1,
 		"tS": 0
@@ -635,6 +680,15 @@
 		"oAP": "\/libraries\/p5.sound-min.js",
 		"oF": 0,
 		"sC": 0,
+		"tS": 0
+		},
+	"\/libraries\/poly-decomp.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/libraries\/poly-decomp-min.js",
+		"oF": 0,
+		"sC": 1,
 		"tS": 0
 		},
 	"\/matter-collision-events\/.npmignore": {

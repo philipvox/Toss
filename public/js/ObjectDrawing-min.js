@@ -1,24 +1,45 @@
+function UniqueID() { return '_' + Math.random().toString(36).substr(2, 9); }
+var standColor = '#'+string_to_color(UniqueID());
 
-function circ(x, y, r, bounce, friction, Id, force, connect) {
+function circ(x, y, r, bounce, friction, Id, force, connect,color) {
     var options = {
         friction: friction,
         restitution: bounce,
-        // density: .01 / r
+        plugin: {
+          wrap: {
+            min: {
+              x: 0,
+              y: 0 - 100
+            },
+            max: {
+              x: canvas.width,
+              y: canvas.height 
+            }
+          }
+        }
+    }
+    if (r > 1) {
+        r = r
+    }else{
+        r = 1
     }
     this.body = Bodies.circle(x, y, roundUp(r, .1), options);
     World.add(world, this.body)
     this.body.label = Id;
+    this.label = Id;
     this.body.isText = false;
     this.r = roundUp(r, .1);
-    this.color = "#2962FF";
-    this.OGcolor = "#2962FF";
+    this.OGcolor = standColor;
     this.stroke = false;
     this.static = false;
     this.strokeColor = 'black';
     this.type = 'circle';
     this.connections = [];
-    this.connectionsA = [];
-    this.connectionsB = [];
+    this.color = standColor;
+
+    if (color) {
+        this.color = color;
+    }
     if (connect) {
         this.connections = connect;
     }
@@ -28,6 +49,7 @@ function circ(x, y, r, bounce, friction, Id, force, connect) {
     if (this.static) {
         this.body.isStatic = true;
     }
+
     this.Ropelast;
     this.RopeFirst;
     this.show = function() {
@@ -135,8 +157,6 @@ function textDynamic(content,x, y, w,h, fontsize, bounce, friction, Id, force, c
         World.remove(world, this.body);
     }
 }
-
-
 function Boundry(x, y, w, h) {
     var options = {
         isStatic: true
@@ -194,4 +214,59 @@ function Constraint(BodyA, BodyB, L, S, label) {
     }
 }
 
+function string_to_color(str, prc) {
+    'use strict';
+
+    // Check for optional lightness/darkness
+    var prc = typeof prc === 'number' ? prc : -10;
+
+    // Generate a Hash for the String
+    var hash = function(word) {
+        var h = 0;
+        for (var i = 0; i < word.length; i++) {
+            h = word.charCodeAt(i) + ((h << 5) - h);
+        }
+        return h;
+    };
+
+    // Change the darkness or lightness
+    var shade = function(color, prc) {
+        var num = parseInt(color, 16),
+            amt = Math.round(2.55 * prc),
+            R = (num >> 16) + amt,
+            G = (num >> 8 & 0x00FF) + amt,
+            B = (num & 0x0000FF) + amt;
+        return (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+            (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+            (B < 255 ? B < 1 ? 0 : B : 255))
+            .toString(16)
+            .slice(1);
+    };
+
+    // Convert init to an RGBA
+    var int_to_rgba = function(i) {
+        var color = ((i >> 24) & 0xFF).toString(16) +
+            ((i >> 16) & 0xFF).toString(16) +
+            ((i >> 8) & 0xFF).toString(16) +
+            (i & 0xFF).toString(16);
+        return color;
+    };
+
+    return shade(int_to_rgba(hash(str)), prc);
+
+}
+function Acheivments(argument) {
+    this.ballCount = 0;
+    this.jointCount = 0;
+    this.shapesbuilt = 0;
+    this.countBalls = function() {
+        // body...
+    }
+    this.jointCount = function() {
+        // body...
+    }
+    this.ShapeCount = function() {
+        // body...
+    }
+}
 

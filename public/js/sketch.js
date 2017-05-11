@@ -51,12 +51,14 @@ var wallL;
 var wallR;
 var topfl;
 var my = {};
+
+
 p5.disableFriendlyErrors = true;
 
 engine = Engine.create();
 world = engine.world;
-// var rope = [];
-// Matter.use('matter-collision-events');
+Matter.use('matter-attractors');
+Matter.use('matter-wrap');
 
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
@@ -101,7 +103,9 @@ function setup() {
 }
 function draw() {
     background('#ECEFF1');
-
+    if (ShapesActive) {
+        DrawingSelected();
+    }
     for (var i = 0; i < joints.length; i++) {
         joints[i].show();
         jointRemover(i);
@@ -118,9 +122,7 @@ function draw() {
     for (var i = 0; i < dots.length; i++) {
         dots[i].show();
     }
-    if (ShapesActive) {
-        DrawingSelected();
-    }
+    
     
     if (Object.keys(ActiveUser).length == 0) {
         if (topfl === 'nothing') {
@@ -149,7 +151,7 @@ function draw() {
     for (var i = 0; i < textcontent.length; i++) {
         textcontent[i].show();
     }
-    Engine.update(engine);
+    // Engine.update(engine);
 }
 var textcontent = [];
 
@@ -171,10 +173,7 @@ function jointRemover(j) {
             joints.splice(j, 1);
         }
     }
-    // for (var i = 0; i < elements.length; i++) {
-
-    
-    
+    // for (var i = 0; i < elements.length; i++) {  
 }
 function userExisted(arr,newlabel) {
   return arr.some(function(el) {
@@ -244,14 +243,18 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   var d = R * c; // Distance in km
   return d;
+
 }
 
 function deg2rad(deg) {
+  
   return deg * (Math.PI/180)
 }
 function InitDrawing(data) {
     var prev = [];
-    console.log(getDistanceFromLatLonInKm(data[0].lat,data[0].lon,my.lat,my.lon));
+    if ((data[0].lat)&&(data[0].lon)&&(my.lat)&&(my.lon)) {
+        var distance = getDistanceFromLatLonInKm(data[0].lat,data[0].lon,my.lat,my.lon);
+    }
     if (data.length == 1) {
         var x = data[0].x;
         var y = 0;
@@ -313,8 +316,6 @@ function InitDrawing(data) {
             prev.push(c);
         }
     }
-    
-
 }
 
 function userExists(arr,newlabel) {
@@ -322,24 +323,6 @@ function userExists(arr,newlabel) {
     return el.label === newlabel;
   }); 
 }
-function superJoin(Connections,type) {
-    var first,
-        second;
-    
-    setTimeout(function() {
-        for (var f = 0; f < elements.length; f++) {
-            for (var i = 0; i < Connections.length; i++) {
-                    if (elements[f].body.label == Connections[i].a) {
-                        first = elements[f].body;
-                    }else if (elements[f].body.label == Connections[i].b) {
-                         second = elements[f].body;
-                    }
-                }
-            }
-        joints.push(new Constraint(first, second, first.circleRadius + second.circleRadius * 1.5, stiff));
-    }, 150);
-}
-
 function updateGravity(event) {
     if (GravityActive) {
         if (!engine) return;
@@ -367,53 +350,42 @@ function updateGravity(event) {
         }
     }
 };
-
 function UniqueID() { return '_' + Math.random().toString(36).substr(2, 9); }
 
 function pushCirc(bsX, bsY, bw, bounced, frictioned, elements, bh, id) {
-
-    if (actv_btn === 'square') {
-        elements.push(new Box(bsX, bsY, bw, bh, 0, 1, id))
-    } else if (actv_btn === 'circle') {
-        
-
+    if (actv_btn === 'circle') {
         if (StaticActive && ShapesActive) {
             var ball = new circ(bsX, bsY, bw, bounced, frictioned, id);
             elements.push(ball)
-        ball.static = true;
-        ball.stroke = true;
-        ball.strokeColor = 'black';
-        Matter.Body.setStatic(ball.body, true);
-
+            ball.static = true;
+            ball.stroke = true;
+            ball.strokeColor = 'black';
+            Matter.Body.setStatic(ball.body, true);
         }else{
             var ball = new circ(bsX, bsY, bw, bounced, frictioned, id);
             elements.push(ball);
-        }
-        
-        
-       
-    } else if (actv_btn === 'poly') {
-        elements.push(new Box(bsX, bsY, bw, bh, bounced, frictioned, id))
-    } else if (actv_btn === 'emoji') {
-        elements.push(new circ(bsX, bsY, bw, bounced, frictioned, id))
-    } else if (actv_btn === 'text_btn') {
-        elements.push(new Box(bsX, bsY, bw, bh, bounced, frictioned, id))
-    }
+        }       
+    } 
 }
-
+var TouchDrawing;
 function touchStarted(){
     startV = createVector(mouseX, mouseY);
     time = new Date().getMilliseconds();
+
+    TouchDrawing = true
 }
 
 function touchEnded() {
     if (ShapesActive === true) {
-        var endV = createVector(mouseX, mouseY);
-        var endTime = new Date().getMilliseconds();
-        var bw = endV.x - startV.x
-        var bh = endV.y - startV.y
-        pushCirc(startV.x, startV.y, bw, bounced, frictioned, elements, bh, UniqueID());
+        if (clickStopped) {
+            var endV = createVector(mouseX, mouseY);
+            var endTime = new Date().getMilliseconds();
+            var bw = endV.x - startV.x
+            var bh = endV.y - startV.y
+            pushCirc(startV.x, startV.y, bw, bounced, frictioned, elements, bh, UniqueID());
+        }
     }
+    TouchDrawing = false
 }
 
 
