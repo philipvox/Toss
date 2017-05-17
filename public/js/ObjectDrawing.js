@@ -1,5 +1,8 @@
 function UniqueID() { return '_' + Math.random().toString(36).substr(2, 9); }
-var standColor = '#'+string_to_color(UniqueID());
+var colls = ["#F44336","#E91E63","#FF1744","#F50057","#9C27B0","#D500F9","#651FFF","#2196F3","#3F51B5","#304FFE","#29B6F6","#00BCD4","#009688","#00E676","#1DE9B6","#8BC34A","#CDDC39","#FDD835","#FFC400","#FF9100","#FF3D00"];
+var standColor = generateStupidColor();
+var triColor = generateStupidColor();
+var sqrColor = generateStupidColor();
 
 function circ(x, y, r, bounce, friction, Id, force, connect,color) {
     var options = {
@@ -25,6 +28,7 @@ function circ(x, y, r, bounce, friction, Id, force, connect,color) {
     }
     this.body = Bodies.circle(x, y, roundUp(r, .1), options);
     World.add(world, this.body)
+    this.body.r = r;
     this.body.label = Id;
     this.label = Id;
     this.body.isText = false;
@@ -34,6 +38,7 @@ function circ(x, y, r, bounce, friction, Id, force, connect,color) {
     this.static = false;
     this.strokeColor = 'black';
     this.type = 'circle';
+    this.body.types = 'circle';
     this.connections = [];
     this.color = standColor;
 
@@ -50,8 +55,6 @@ function circ(x, y, r, bounce, friction, Id, force, connect,color) {
         this.body.isStatic = true;
     }
 
-    this.Ropelast;
-    this.RopeFirst;
     this.show = function() {
         var pos = this.body.position;
         var angle = this.body.angle;
@@ -255,17 +258,17 @@ function string_to_color(str, prc) {
     return shade(int_to_rgba(hash(str)), prc);
 
 }
-function Acheivments(argument) {
-    this.ballCount = 0;
-    this.jointCount = 0;
-    this.shapesbuilt = 0;
-    this.countBalls = function() {
-        // body...
-    }
-    this.jointCount = function() {
-        // body...
-    }
-    this.ShapeCount = function() {
-        // body...
-    }
+
+function randomColor(generator){
+    generator = generator || Math.random;
+    return colls[Math.floor(generator()*colls.length)];
+}
+
+
+function generateStupidColor(generator){
+    var noun1 = randomColor(generator);
+    var output = ''+noun1+'';
+    return output;
+   
+    
 }

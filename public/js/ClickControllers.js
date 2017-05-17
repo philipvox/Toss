@@ -75,21 +75,25 @@ function elLinks(bool, Tbody, elements, i) {
                     FirstEl.connections.push(obj);
                     elements[i].connections.push(obj);
                     obj = {};
-                    if (clickedObj.isText == true && clickedObj_Prev.isText == true) {
-                        console.log('both');
-                        joints.push(new Constraint(clickedObj, clickedObj_Prev, (clickedObj.height + clickedObj_Prev.height ), stiff, UniqueID()));
-                    }else if (clickedObj.isText == true && clickedObj_Prev.isText == false) {
-                        console.log('first');
-                        joints.push(new Constraint(clickedObj, clickedObj_Prev, (clickedObj.height + clickedObj_Prev.circleRadius ), stiff, UniqueID()));
-                    }else if (clickedObj.isText == false && clickedObj_Prev.isText == true) {
-                        console.log('second');
-                        joints.push(new Constraint(clickedObj, clickedObj_Prev, (clickedObj.circleRadius + clickedObj_Prev.height ), stiff, UniqueID()));
-                    }else{
-                         if (Tbody.circleRadius) {
-                            console.log('circs');
-                            joints.push(new Constraint(clickedObj, clickedObj_Prev, (clickedObj.circleRadius + clickedObj_Prev.circleRadius) * 1.5, stiff, UniqueID()));
+                    if (Tbody.r) {
+                            console.log((clickedObj.r + clickedObj_Prev.r) * 2);
+                            console.log((clickedObj_Prev.r + clickedObj.r) * 2);
+                            joints.push(new Constraint(clickedObj, clickedObj_Prev, (clickedObj.r + clickedObj_Prev.r) * 2, stiff, UniqueID()));
                         } 
-                    }
+                    // if (clickedObj.types != 'circle' && clickedObj_Prev.types != 'circle') {
+                    //     console.log('both');
+                    //     joints.push(new Constraint(clickedObj, clickedObj_Prev, (clickedObj.r + clickedObj_Prev.r ), stiff, UniqueID()));
+                    // }else if (clickedObj.types != 'circle' && clickedObj_Prev.types == 'circle') {
+                    //     console.log('first');
+                    //     joints.push(new Constraint(clickedObj, clickedObj_Prev, (clickedObj.r + clickedObj_Prev.r ), stiff, UniqueID()));
+                    // }else if (clickedObj.types == 'circle' && clickedObj_Prev.types != 'circle') {
+                    //     console.log('second');
+                    //     joints.push(new Constraint(clickedObj, clickedObj_Prev, (clickedObj.r + clickedObj_Prev.r ), stiff, UniqueID()));
+                    // }else{
+                    //      if (Tbody.circleRadius) {
+                    //         joints.push(new Constraint(clickedObj, clickedObj_Prev, (clickedObj.r + clickedObj_Prev.r) * 1.5, stiff, UniqueID()));
+                    //     } 
+                    // }
 
                 }
             }
@@ -104,3 +108,6 @@ function elLinks(bool, Tbody, elements, i) {
         }
     }
 }
+
+
+

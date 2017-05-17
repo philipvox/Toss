@@ -41,7 +41,7 @@ var time;
 var wallWidth = 100;
 var bounced = .6;
 var frictioned = 0.01;
-var stiff = .09;
+var stiff = .2;
 var JointConnectionDely = 250;
 var objCount = 0;
 var BallsOut = 0;
@@ -51,7 +51,7 @@ var wallL;
 var wallR;
 var topfl;
 var my = {};
-
+var sendDelay = 300;
 
 p5.disableFriendlyErrors = true;
 
@@ -68,10 +68,10 @@ function setup() {
     socket.on('balls', InitDrawing);
     socket.on('clients', userUpdate);
     // socket.on('Ropedata', GetRopes);
-    fl = new Boundry(width / 2, height + (wallWidth / 2), width, wallWidth);
+    fl = new Boundry(width / 2, height + (wallWidth / 2), 5000, wallWidth);
     wallR = new Boundry(width + (wallWidth / 2), height / 2, wallWidth, height + 1000);
     wallL = new Boundry(0 - (wallWidth / 2), height / 2, wallWidth, height + 1000);
-    topfl = new Boundry(width / 2, 0 - (wallWidth / 2), width, wallWidth);
+    topfl = new Boundry(width / 2, 0 - (wallWidth / 2),5000, wallWidth);
     mouseCon();
     mobileON = mobilecheck();
     var options = {
@@ -184,7 +184,6 @@ function userExisted(arr,newlabel) {
 BallsOutArr = [];
 function SendBallConstructor(elements, i, x, y, force) {
     if ((y < - 2) && (elements[i].body.velocity.y < 0)) {
-
         var ball = {
             x: x,
             y: y,
@@ -200,7 +199,8 @@ function SendBallConstructor(elements, i, x, y, force) {
             sentCount: BallsOut,
             color: elements[i].color,
             lat:my.lat,
-            lon:my.lon
+            lon:my.
+            lon
         };
         BallsOutArr.push(ball);
         ballsOut();
@@ -219,6 +219,7 @@ function emitBalls(data) {
             }
         }
 }
+
 function ballsOut() {
     setTimeout(function() {
         if (BallsOutArr.length >= 2) {
@@ -229,7 +230,7 @@ function ballsOut() {
             emitBalls(BallsOutArr);
             BallsOutArr = [];   
         }
-    }, 500);
+    }, sendDelay);
 }
 function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var R = 6371; // Radius of the earth in km
@@ -252,9 +253,9 @@ function deg2rad(deg) {
 }
 function InitDrawing(data) {
     var prev = [];
-    if ((data[0].lat)&&(data[0].lon)&&(my.lat)&&(my.lon)) {
-        var distance = getDistanceFromLatLonInKm(data[0].lat,data[0].lon,my.lat,my.lon);
-    }
+    // if ((data[0].lat)&&(data[0].lon)&&(my.lat)&&(my.lon)) {
+    //     var distance = getDistanceFromLatLonInKm(data[0].lat,data[0].lon,my.lat,my.lon);
+    // }
     if (data.length == 1) {
         var x = data[0].x;
         var y = 0;
@@ -269,8 +270,24 @@ function InitDrawing(data) {
         var type = data[0].Type;
         var connection = data[0].connections
         var color = data[0].color
-        var c = new circ(x, y, r, bounce, friction, id, force, connection, color);
-        elements.push(c);
+        
+        if (type === 'tri') {
+            var t = new triangles(x, y, r, bounce, friction, id, force, connection,color);
+            elements.push(t);
+            console.log(type);
+        }else if (type === 'sqr') {
+            var s = new squares(x, y, r, bounce, friction, id, force, connection,color);
+            elements.push(s);
+            console.log(type);
+        }else if (type === 'circle'){
+            var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
+            elements.push(c);
+            console.log(type);
+        }else{
+            console.log('?:'+type);
+        }
+        
+        
     }else{
         
         for (var i = 0; i < data.length; i++) {
@@ -287,8 +304,21 @@ function InitDrawing(data) {
             var type = data[i].Type;
             var connection = data[i].connections
             var color = data[i].color
-            var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
-            elements.push(c);
+            // var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
+            if (type === 'tri') {
+                var t = new triangles(x, y, r, bounce, friction, id, force, connection,color);
+                elements.push(t);
+            }else if (type === 'sqr') {
+                var s = new squares(x, y, r, bounce, friction, id, force, connection,color);
+                elements.push(s);
+            }else if (type === 'circle'){
+                var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
+                elements.push(c);
+            }else{
+                console.log(type);
+            }
+            // console.log(type);
+            
             if (prev){
                     var first,second;
                     for (var m = 0; m < elements.length; m++) {
@@ -324,8 +354,17 @@ function userExists(arr,newlabel) {
   }); 
 }
 function updateGravity(event) {
-    if (GravityActive) {
-        if (!engine) return;
+    // if (true) {
+     
+    // } else {
+    //     engine.world.gravity.x = 0;
+    //     if (debug) {
+    //     engine.world.gravity.y = 1;
+    //     }else{
+    //     engine.world.gravity.y = 0;
+    //     }
+    // }
+       if (!engine) return;
         var orientation = window.orientation,
             gravity = engine.world.gravity;
         if (orientation === 0) {
@@ -341,14 +380,6 @@ function updateGravity(event) {
             gravity.x = Common.clamp(-event.beta, -90, 90) / 90;
             gravity.y = Common.clamp(event.gamma, -90, 90) / 90;
         }
-    } else {
-        engine.world.gravity.x = 0;
-        if (debug) {
-        engine.world.gravity.y = 1;
-        }else{
-        engine.world.gravity.y = 0;
-        }
-    }
 };
 function UniqueID() { return '_' + Math.random().toString(36).substr(2, 9); }
 

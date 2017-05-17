@@ -33,12 +33,15 @@ function allTrue(obj) {
         }
         if (keysArray.equals(spr)) {
             // console.log('spr');
-            dots.push(new dot(squareMaker, 'spr'));
+            var Vals = buildShapeObj(squareMaker);
+            elements.push(new squares(Vals.x, Vals.y, Vals.r, bounced, frictioned, UniqueID()));
             squareMaker = [];
         }
         if (keysArray.equals(tri)) {
             // console.log('tri');
-            dots.push(new dot(squareMaker, 'tri'));
+            var Vals = buildShapeObj(squareMaker);
+            elements.push(new triangles(Vals.x, Vals.y, Vals.r, bounced, frictioned, UniqueID()));
+            Engine.update(engine);
             squareMaker = [];
         }
         if (keysArray.equals(rect)) {
@@ -61,9 +64,18 @@ function dot(arr, string) {
                   y: (bodyA.position.y - bodyB.position.y) * 5e-6,
                 };
               }
-            ]
+            ],
+            wrap: {
+                min: {
+                  x: 0,
+                  y: 0 - 100
+                },
+                max: {
+                  x: canvas.width,
+                  y: canvas.height 
+                }
+              }
           }
-         
     }  
    
     this.array = arr;
@@ -102,13 +114,238 @@ function dot(arr, string) {
             rotate(angle);
             rectMode(CENTER);
             noStroke();
-            fill('red');
+            fill(this.color);
             ellipse(0, 0, this.r * 2, this.r * 2);
         pop();
+        if (this.static) {
+            var pos = this.body.position;
+            var angle = this.body.angle;
+            push();
+                translate(pos.x, pos.y);
+                rotate(angle);
+                rectMode(CENTER);
+                stroke('#000');
+                noFill();
+                ellipse(0, 0, (this.r * 2) / 3, (this.r * 2) / 3);
+            pop();
+        }
     }
     this.removeFromWorld = function() {
         World.remove(world, this.body);
     }
+}
+
+function UniqueID() { return '_' + Math.random().toString(36).substr(2, 9); }
+
+function buildShapeObj(arr) {
+    var xVal;
+    var yVal;
+    var rVal;
+    var Center = GetCenter(arr);
+    xVal = Center.x;
+    yVal = Center.y;
+    var childern = removeDuplicates(arr, 'body','label');
+    for (var m = 0; m < childern.length; m++) {
+        for (var i = 0; i < elements.length; i++) {
+            if (elements[i].body.label  == childern[m].body.label) {
+                elements[i].removeFromWorld();
+                elements.splice(i, 1);
+            }
+        }
+    }
+    rVal = Math.dist(arr[0].body.position.x, arr[1].body.position.x,arr[0].body.position.y, arr[1].body.position.y);
+    return {x: xVal, y: yVal,r: rVal}
+}
+
+function triangles(x, y, r, bounce, friction, Id, force, connect,color) {
+    // this.array = arr;
+    var options = {
+        friction: friction,
+        restitution: bounce,
+        plugin:{
+            attractors: [
+              function(bodyA, bodyB) {
+                return {
+                  x: (bodyA.position.x - bodyB.position.x) * 5e-6,
+                  y: (bodyA.position.y - bodyB.position.y) * 5e-6,
+                };
+              }
+            ],
+            wrap: {
+                min: {
+                  x: 0,
+                  y: 0 - 100
+                },
+                max: {
+                  x: canvas.width,
+                  y: canvas.height 
+                }
+              }
+          }    
+    }  
+    this.x = x;
+    this.y = y
+    this.r = r;
+    this.body = Bodies.polygon(this.x, this.y, 3, this.r, options);
+    this.body.r = r;
+    this.body.label = Id;
+    this.color = triColor;
+    this.OGcolor = triColor;
+    this.stroke = false;
+    this.static = false;
+    this.strokeColor = 'black';
+    this.type = 'tri';
+    this.body.types = 'tri';
+    this.connections = [];
+
+    if (color) {
+        this.color = color;
+    }
+    if (connect) {
+        this.connections = connect;
+    }
+    if (force) {
+        Matter.Body.applyForce(this.body, this.body.position, force)
+    }
+    if (this.static) {
+        this.body.isStatic = true;
+    }
+
+    // this.childern = removeDuplicates(arr, 'body','label');
+    
+    World.add(world, this.body);
+    Engine.update(engine);
+
+    
+
+    this.show = function() {
+        var pos = this.body.position;
+        push();
+            fill(this.color);
+            if (this.stroke) {
+                stroke(this.strokeColor);
+                strokeWeight(3);
+            } else { 
+                noStroke(); 
+            }
+            var x1 = this.body.vertices[0].x
+            var y1 = this.body.vertices[0].y
+            var x2 = this.body.vertices[1].x
+            var y2 = this.body.vertices[1].y
+            var x3 = this.body.vertices[2].x
+            var y3 = this.body.vertices[2].y
+            triangle(x1,y1,x2,y2,x3,y3);
+        pop();
+        if (this.static) {
+            var pos = this.body.position;
+            var angle = this.body.angle;
+            push();
+                translate(pos.x, pos.y);
+                rotate(angle);
+                rectMode(CENTER);
+                stroke('#000');
+                noFill();
+                ellipse(0, 0, (this.r * 2) / 3, (this.r * 2) / 3);
+            pop();
+        }
+    }
+
+    this.removeFromWorld = function() {
+        World.remove(world, this.body);
+    }
+}
+
+function squares(x, y, r, bounce, friction, Id, force, connect,color) {
+    var options = {
+        friction: friction,
+        restitution: bounce,
+        plugin:{
+            wrap: {
+                min: {
+                  x: 0,
+                  y: 0 - 100
+                },
+                max: {
+                  x: canvas.width,
+                  y: canvas.height 
+                }
+              }
+          }    
+    }  
+    this.x = x;
+    this.y = y
+    this.r = r;
+    this.body = Bodies.polygon(this.x, this.y, 4, this.r, options);
+    this.body.r = r;
+    this.body.label = Id;
+    this.color = sqrColor;
+    this.OGcolor = sqrColor;
+    this.stroke = false;
+    this.static = false;
+    this.strokeColor = 'black';
+    this.type = 'sqr';
+    this.body.types = 'sqr';
+    this.connections = [];
+
+    if (color) {
+        this.color = color;
+    }
+    if (connect) {
+        this.connections = connect;
+    }
+    if (force) {
+        Matter.Body.applyForce(this.body, this.body.position, force)
+    }
+    if (this.static) {
+        this.body.isStatic = true;
+    }
+    World.add(world, this.body);
+    wallR.removeFromWorld();
+    wallL.removeFromWorld();
+    Engine.update(engine);
+    this.show = function() {
+        var pos = this.body.position;
+        push();
+            fill(this.color);
+            if (this.stroke) {
+                stroke(this.strokeColor);
+                strokeWeight(3);
+            } else { 
+                noStroke(); 
+            }
+            var x1 = this.body.vertices[0].x
+            var y1 = this.body.vertices[0].y
+            var x2 = this.body.vertices[1].x
+            var y2 = this.body.vertices[1].y
+            var x3 = this.body.vertices[2].x
+            var y3 = this.body.vertices[2].y
+            var x4 = this.body.vertices[3].x
+            var y4 = this.body.vertices[3].y
+            quad(x1,y1,x2,y2,x3,y3,x4,y4)
+        pop();
+        if (this.static) {
+            var pos = this.body.position;
+            var angle = this.body.angle;
+            push();
+                translate(pos.x, pos.y);
+                rotate(angle);
+                rectMode(CENTER);
+                stroke('#000');
+                noFill();
+                ellipse(0, 0, (this.r * 2) / 3, (this.r * 2) / 3);
+            pop();
+        }
+    }
+
+    this.removeFromWorld = function() {
+        World.remove(world, this.body);
+    }
+}
+
+Math.dist=function(x1,x2,y1,y2){ 
+  if(!x2) x2=0; 
+  if(!y2) y2=0;
+  return Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1)); 
 }
 
 function removeDuplicates(originalArray, objKey,label) {
@@ -153,49 +390,10 @@ function CollisionDetection(array, colors) {
             var colObj;
             colObj = array[i];
             colObj.color = colors;
-            
-            // for (x = 0; x < e.pairs.length; x++) {
-            //     var oBody = colObj.body.label
-            //     var aBody = e.pairs[x].bodyA.label
-            //     var bBody = e.pairs[x].bodyB.label
-            //     pair = e.pairs[x];
-            //     function aBodyCheck(e) {
-            //         return e.body.label == aBody
-            //     }
-            //     function bBodyCheck(e) {
-            //         return e.body.label == bBody
-            //     }
-            //     if (aBody != 'Rectangle Body') {
-            //         if (bBody != 'Rectangle Body')  {
-            //             var m = oBody == aBody;
-            //             var b = oBody == bBody;
-            //             if (oBody == aBody) {
-            //                 if (bBody != oBody) {
-            //                     console.log('abody'+oBody);
-            //                 }
-            //             }
-            //             if (oBody == bBody) {
-            //                 if (aBody != oBody) {
-            //                     console.log('bbody'+oBody);
-            //                 }
-            //                 //do something to a body
-                            
-                            
-            //             }
-                        
-                        
-                        
-
-            //             // console.log(bBody);
-            //         }
-                    
-            //     }
-                
-
-            //   }
             }  
     });
 }
+
 function notequalto(element, index, array, val) {
   return element >= val;
 }
@@ -204,7 +402,7 @@ function ColDelete(bBody,array) {
         if (elements[s].body.label == bBody) {
              elements[s].color = 'red';   
         }
-}
+    }
 }
 function actionOnGroup(coll, color) {
     for (var d = 0; d < elements.length; d++) {

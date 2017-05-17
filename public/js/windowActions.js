@@ -16,7 +16,7 @@ window.onresize = function() {
         wallR.removeFromWorld();
         wallL.removeFromWorld();
         setTimeout(function() {
-            fl = new Boundry(width / 2, height + (wallWidth / 2), width, wallWidth);
+            fl = new Boundry(width / 2, height + (wallWidth / 2), 5000, wallWidth);
             wallR = new Boundry(width + (wallWidth / 2), height / 2, wallWidth, height + 1000);
             wallL = new Boundry(0 - (wallWidth / 2), height / 2, wallWidth, height + 1000);
         }, 200);
