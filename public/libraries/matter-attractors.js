@@ -143,13 +143,12 @@ var MatterAttractors = {
     update: function update(engine) {
       var world = engine.world,
           bodies = Matter.Composite.allBodies(world);
-
-      for (var i = 0; i < bodies.length; i += 1) {
-        var bodyA = bodies[i],
+      for (var i = 0; i < elements.length; i += 1) {
+        var bodyA = elements[i].body,
             attractors = bodyA.plugin.attractors;
 
         if (attractors && attractors.length > 0) {
-          for (var j = i + 1; j < bodies.length; j += 1) {
+          for (var j = 0; j < bodies.length; j += 1) {
             var bodyB = bodies[j];
 
             for (var k = 0; k < attractors.length; k += 1) {

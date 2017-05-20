@@ -89,6 +89,7 @@ function dot(arr, string) {
     this.childernlabels = [];
     this.body.label = 'centerBall';
     World.add(world, this.body);
+
     if (string == 'tri') {
         this.color = '#76FF03'
         CollisionDetection(this.childern,'#76FF03')
@@ -216,17 +217,19 @@ function triangles(x, y, r, bounce, friction, Id, force, connect,color) {
     World.add(world, this.body);
     Engine.update(engine);
 
-    
-
     this.show = function() {
         var pos = this.body.position;
         push();
             fill(this.color);
             if (this.stroke) {
                 stroke(this.strokeColor);
-                strokeWeight(3);
+                // strokeWeight(3);
             } else { 
                 noStroke(); 
+                drawingContext.shadowColor = 'rgba(0,0,0,.34)';
+                drawingContext.shadowBlur = 30;
+                drawingContext.shadowOffsetX = this.body.r/3;
+                drawingContext.shadowOffsetY = this.body.r/3;
             }
             var x1 = this.body.vertices[0].x
             var y1 = this.body.vertices[0].y
@@ -243,7 +246,8 @@ function triangles(x, y, r, bounce, friction, Id, force, connect,color) {
                 translate(pos.x, pos.y);
                 rotate(angle);
                 rectMode(CENTER);
-                stroke('#000');
+                colorMode(RGB, 255, 255, 255, 1);
+                stroke(0, 0, 0, 0.3);
                 noFill();
                 ellipse(0, 0, (this.r * 2) / 3, (this.r * 2) / 3);
             pop();
@@ -312,6 +316,10 @@ function squares(x, y, r, bounce, friction, Id, force, connect,color) {
                 strokeWeight(3);
             } else { 
                 noStroke(); 
+                drawingContext.shadowColor = 'rgba(0,0,0,.34)';
+                drawingContext.shadowBlur = 30;
+                drawingContext.shadowOffsetX = this.body.r/3;
+                drawingContext.shadowOffsetY = this.body.r/3;
             }
             var x1 = this.body.vertices[0].x
             var y1 = this.body.vertices[0].y
@@ -330,7 +338,8 @@ function squares(x, y, r, bounce, friction, Id, force, connect,color) {
                 translate(pos.x, pos.y);
                 rotate(angle);
                 rectMode(CENTER);
-                stroke('#000');
+                colorMode(RGB, 255, 255, 255, 1);
+                stroke(0, 0, 0, 0.3);
                 noFill();
                 ellipse(0, 0, (this.r * 2) / 3, (this.r * 2) / 3);
             pop();

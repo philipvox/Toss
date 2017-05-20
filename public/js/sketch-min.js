@@ -52,7 +52,7 @@ var wallR;
 var topfl;
 var my = {};
 var sendDelay = 300;
-
+var context;
 p5.disableFriendlyErrors = true;
 
 engine = Engine.create();
@@ -62,6 +62,7 @@ Matter.use('matter-wrap');
 
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
+    // context = canvas.getContext('2d');
     canvas.parent('myContainer');
     Engine.run(engine);
     socket = io.connect();
@@ -96,10 +97,7 @@ function setup() {
     function error(err) {
       console.warn(`ERROR(${err.code}): ${err.message}`);
     };
-
     navigator.geolocation.getCurrentPosition(success, error, options);
-    
-    
 }
 function draw() {
     background('#ECEFF1');
@@ -204,7 +202,6 @@ function SendBallConstructor(elements, i, x, y, force) {
         };
         BallsOutArr.push(ball);
         ballsOut();
-
         elements[i].removeFromWorld();
         elements.splice(i, 1);
 
@@ -213,11 +210,22 @@ function SendBallConstructor(elements, i, x, y, force) {
 function emitBalls(data) {
     if (Object.keys(ActiveUser).length === 0) {
             socket.emit('balls', data, MyName);
-        } else {
-            for (var i = 0; i < Object.keys(ActiveUser).length; i++) {
-                socket.emit('balls', data, Object.keys(ActiveUser)[i]);
-            }
+    } else {
+        for (var i = 0; i < Object.keys(ActiveUser).length; i++) {
+            socket.emit('balls', data, Object.keys(ActiveUser)[i]);
         }
+    }
+}
+function Usersadded(data) {
+    if (Object.keys(ActiveUser).length != 0) {
+        for (var i = 0; i < Object.keys(ActiveUser).length; i++) {
+            socket.emit('User_added', data, Object.keys(ActiveUser)[i]);
+        }
+    }
+}
+function UsersRecieved(data) {
+    $('#popup').show();
+    $('#Adduser').text(data);
 }
 
 function ballsOut() {

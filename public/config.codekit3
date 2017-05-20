@@ -574,6 +574,15 @@
 		"sC": 0,
 		"tS": 0
 		},
+	"\/js\/windowActions-min.js": {
+		"ft": 64,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/js\/windowActions-min-min.js",
+		"oF": 0,
+		"sC": 1,
+		"tS": 0
+		},
 	"\/js\/windowActions.js": {
 		"ft": 64,
 		"mi": 1,
@@ -585,16 +594,16 @@
 		},
 	"\/libraries\/hammer.min.js": {
 		"ft": 64,
-		"mi": 1,
-		"oA": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/libraries\/hammer.min-min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 0,
 		"tS": 0
 		},
 	"\/libraries\/matter-attractors-min.js": {
 		"ft": 64,
-		"mi": 1,
+		"mi": 0,
 		"oA": 0,
 		"oAP": "\/libraries\/matter-attractors-min-min.js",
 		"oF": 0,
@@ -603,16 +612,16 @@
 		},
 	"\/libraries\/matter-attractors.js": {
 		"ft": 64,
-		"mi": 1,
-		"oA": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/libraries\/matter-attractors-min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 1,
 		"tS": 0
 		},
 	"\/libraries\/matter-collision-events-min.js": {
 		"ft": 64,
-		"mi": 1,
+		"mi": 0,
 		"oA": 0,
 		"oAP": "\/libraries\/matter-collision-events-min-min.js",
 		"oF": 0,
@@ -621,16 +630,16 @@
 		},
 	"\/libraries\/matter-collision-events.js": {
 		"ft": 64,
-		"mi": 1,
-		"oA": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/libraries\/matter-collision-events-min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 1,
 		"tS": 0
 		},
 	"\/libraries\/matter-min.js": {
 		"ft": 64,
-		"mi": 1,
+		"mi": 0,
 		"oA": 0,
 		"oAP": "\/libraries\/matter-min-min.js",
 		"oF": 0,
@@ -639,55 +648,55 @@
 		},
 	"\/libraries\/matter-wrap.js": {
 		"ft": 64,
-		"mi": 1,
-		"oA": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/libraries\/matter-wrap-min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 1,
 		"tS": 0
 		},
 	"\/libraries\/matter.js": {
 		"ft": 64,
-		"mi": 1,
-		"oA": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/libraries\/matter-min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 0,
 		"tS": 0
 		},
 	"\/libraries\/p5.dom.js": {
 		"ft": 64,
-		"mi": 1,
-		"oA": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/libraries\/p5.dom-min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 0,
 		"tS": 0
 		},
 	"\/libraries\/p5.js": {
 		"ft": 64,
-		"mi": 1,
-		"oA": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/libraries\/p5-min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 0,
 		"tS": 0
 		},
 	"\/libraries\/p5.sound.js": {
 		"ft": 64,
-		"mi": 1,
-		"oA": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/libraries\/p5.sound-min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 0,
 		"tS": 0
 		},
 	"\/libraries\/poly-decomp.js": {
 		"ft": 64,
-		"mi": 1,
-		"oA": 0,
+		"mi": 0,
+		"oA": 1,
 		"oAP": "\/libraries\/poly-decomp-min.js",
-		"oF": 0,
+		"oF": 1,
 		"sC": 1,
 		"tS": 0
 		},

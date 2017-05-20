@@ -22,7 +22,11 @@ function newConnetion(socket) {
   socket.on('updateActive', updateActive);
   socket.on('rotate', rotates);
   socket.on('ropeVal', ropes);
-
+  socket.on('User_added', UserAdded);
+  
+  function UserAdded(data, user) {
+    clients[user].emit('rotate', data);
+  }
   function rotates(data, user) {
     // io.sockets.emit('rotate', data)
     clients[user].emit('rotate', data);

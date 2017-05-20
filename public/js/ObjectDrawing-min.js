@@ -3,22 +3,23 @@ var colls = ["#F44336","#E91E63","#FF1744","#F50057","#9C27B0","#D500F9","#651FF
 var standColor = generateStupidColor();
 var triColor = generateStupidColor();
 var sqrColor = generateStupidColor();
-
+ 
 function circ(x, y, r, bounce, friction, Id, force, connect,color) {
     var options = {
         friction: friction,
         restitution: bounce,
-        plugin: {
-          wrap: {
-            min: {
-              x: 0,
-              y: 0 - 100
-            },
-            max: {
-              x: canvas.width,
-              y: canvas.height 
-            }
-          }
+        plugin:{
+            attractors: [],
+            wrap: {
+                min: {
+                  x: 0,
+                  y: 0 - 100
+                },
+                max: {
+                  x: canvas.width,
+                  y: canvas.height 
+                }
+              }
         }
     }
     if (r > 1) {
@@ -28,7 +29,7 @@ function circ(x, y, r, bounce, friction, Id, force, connect,color) {
     }
     this.body = Bodies.circle(x, y, roundUp(r, .1), options);
     World.add(world, this.body)
-    this.body.r = r;
+    this.body.r = roundUp(r, .1);
     this.body.label = Id;
     this.label = Id;
     this.body.isText = false;
@@ -66,8 +67,16 @@ function circ(x, y, r, bounce, friction, Id, force, connect,color) {
         rectMode(CENTER);
         if (this.stroke) {
             stroke(this.strokeColor);
-            strokeWeight(3);
-        } else { noStroke(); }
+            // strokeWeight(3);
+            // noStroke();
+        } else { noStroke();
+            // colorMode(RGB, 255, 255, 255, 1);
+            // stroke(0, 0, 0, 0.3);
+            drawingContext.shadowColor = 'rgba(0,0,0,.34)';
+            drawingContext.shadowBlur = 30;
+            drawingContext.shadowOffsetX = this.body.r/3;
+            drawingContext.shadowOffsetY = this.body.r/3;
+        }
         fill(this.color);
         ellipse(0, 0, this.r * 2, this.r * 2);
         pop();
@@ -79,7 +88,9 @@ function circ(x, y, r, bounce, friction, Id, force, connect,color) {
             translate(pos.x, pos.y);
             rotate(angle);
             rectMode(CENTER);
-            stroke('#000');
+            colorMode(RGB, 255, 255, 255, 1);
+            stroke(0, 0, 0, 0.3);
+            
             noFill();
             ellipse(0, 0, (this.r * 2) / 3, (this.r * 2) / 3);
             pop();
