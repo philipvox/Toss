@@ -216,7 +216,13 @@ function triangles(x, y, r, bounce, friction, Id, force, connect,color) {
     
     World.add(world, this.body);
     Engine.update(engine);
+    this.shadowUpdate = function(tilted) {
+        var tilt = tilted;
+        this.scale = this.body.r/3; 
+        this.xOff = tilt.x * this.scale * 2;
+        this.yOff = tilt.y * this.scale * 2;
 
+    }
     this.show = function() {
         var pos = this.body.position;
         push();
@@ -228,8 +234,8 @@ function triangles(x, y, r, bounce, friction, Id, force, connect,color) {
                 noStroke(); 
                 drawingContext.shadowColor = 'rgba(0,0,0,.34)';
                 drawingContext.shadowBlur = 30;
-                drawingContext.shadowOffsetX = this.body.r/3;
-                drawingContext.shadowOffsetY = this.body.r/3;
+                drawingContext.shadowOffsetX = this.xOff;
+                drawingContext.shadowOffsetY = this.yOff;
             }
             var x1 = this.body.vertices[0].x
             var y1 = this.body.vertices[0].y
@@ -307,6 +313,12 @@ function squares(x, y, r, bounce, friction, Id, force, connect,color) {
     wallR.removeFromWorld();
     wallL.removeFromWorld();
     Engine.update(engine);
+    this.shadowUpdate = function(tilted) {
+        var tilt = tilted;
+        this.scale = this.body.r/3;
+        this.xOff = tilt.x * this.scale * 2;
+        this.yOff = tilt.y * this.scale * 2;
+    }
     this.show = function() {
         var pos = this.body.position;
         push();
@@ -318,8 +330,8 @@ function squares(x, y, r, bounce, friction, Id, force, connect,color) {
                 noStroke(); 
                 drawingContext.shadowColor = 'rgba(0,0,0,.34)';
                 drawingContext.shadowBlur = 30;
-                drawingContext.shadowOffsetX = this.body.r/3;
-                drawingContext.shadowOffsetY = this.body.r/3;
+                drawingContext.shadowOffsetX = this.xOff;
+                drawingContext.shadowOffsetY = this.yOff;
             }
             var x1 = this.body.vertices[0].x
             var y1 = this.body.vertices[0].y

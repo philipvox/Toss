@@ -42,7 +42,8 @@ function circ(x, y, r, bounce, friction, Id, force, connect,color) {
     this.body.types = 'circle';
     this.connections = [];
     this.color = standColor;
-
+    // this.xOff = this.body.r/3; 
+    // this.yOff = this.body.r/3;
     if (color) {
         this.color = color;
     }
@@ -55,7 +56,12 @@ function circ(x, y, r, bounce, friction, Id, force, connect,color) {
     if (this.static) {
         this.body.isStatic = true;
     }
-
+    this.shadowUpdate = function(tilted) {
+        var tilt = tilted;
+        this.scale = this.body.r/3;
+        this.xOff = tilt.x * this.scale * 2;
+        this.yOff = tilt.y * this.scale * 2;
+    }
     this.show = function() {
         var pos = this.body.position;
         var angle = this.body.angle;
@@ -72,10 +78,10 @@ function circ(x, y, r, bounce, friction, Id, force, connect,color) {
         } else { noStroke();
             // colorMode(RGB, 255, 255, 255, 1);
             // stroke(0, 0, 0, 0.3);
-            drawingContext.shadowColor = 'rgba(0,0,0,.34)';
+            drawingContext.shadowColor = 'rgba(0,0,0,.24)';
             drawingContext.shadowBlur = 30;
-            drawingContext.shadowOffsetX = this.body.r/3;
-            drawingContext.shadowOffsetY = this.body.r/3;
+            drawingContext.shadowOffsetX = this.xOff;
+            drawingContext.shadowOffsetY = this.yOff;
         }
         fill(this.color);
         ellipse(0, 0, this.r * 2, this.r * 2);

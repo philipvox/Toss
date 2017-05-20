@@ -21,4 +21,5 @@ window.onresize = function() {
             wallL = new Boundry(0 - (wallWidth / 2), height / 2, wallWidth, height + 1000);
         }, 200);
     }, 300);
+   
 }

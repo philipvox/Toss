@@ -149,7 +149,7 @@ function draw() {
     for (var i = 0; i < textcontent.length; i++) {
         textcontent[i].show();
     }
-    // Engine.update(engine);
+    Engine.update(engine);
 }
 var textcontent = [];
 
@@ -375,19 +375,29 @@ function updateGravity(event) {
        if (!engine) return;
         var orientation = window.orientation,
             gravity = engine.world.gravity;
+        var orentationObj;
         if (orientation === 0) {
             gravity.x = Common.clamp(event.gamma, -90, 90) / 90;
             gravity.y = Common.clamp(event.beta, -90, 90) / 90;
+            orentationObj= {x:gravity.x,y:gravity.y};
         } else if (orientation === 180) {
             gravity.x = Common.clamp(event.gamma, -90, 90) / 90;
             gravity.y = Common.clamp(-event.beta, -90, 90) / 90;
+            orentationObj= {x:gravity.x,y:gravity.y};
         } else if (orientation === 90) {
             gravity.x = Common.clamp(event.beta, -90, 90) / 90;
             gravity.y = Common.clamp(-event.gamma, -90, 90) / 90;
+            orentationObj= {x:gravity.x,y:gravity.y};
         } else if (orientation === -90) {
             gravity.x = Common.clamp(-event.beta, -90, 90) / 90;
             gravity.y = Common.clamp(event.gamma, -90, 90) / 90;
+            orentationObj= {x:gravity.x,y:gravity.y};
         }
+        // $('#texteds').html(orentationObj.x * 100)
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].shadowUpdate(orentationObj);
+        }
+        
 };
 function UniqueID() { return '_' + Math.random().toString(36).substr(2, 9); }
 
