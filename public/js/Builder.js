@@ -167,8 +167,8 @@ function triangles(x, y, r, bounce, friction, Id, force, connect,color) {
             attractors: [
               function(bodyA, bodyB) {
                 return {
-                  x: (bodyA.position.x - bodyB.position.x) * 5e-6,
-                  y: (bodyA.position.y - bodyB.position.y) * 5e-6,
+                  x: (bodyA.position.x - bodyB.position.x) *  r/(10000000),
+                  y: (bodyA.position.y - bodyB.position.y) * r/(10000000),
                 };
               }
             ],

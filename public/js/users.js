@@ -4,12 +4,12 @@ var MyName = '';
 var drawEl = document.getElementById('shapes');
 var linkel = document.getElementById('linked');
 var staticEl = document.getElementById('statics');
-var gravvityEl = document.getElementById('gravity');
+// var gravvityEl = document.getElementById('gravity');
 var UsersEl = document.getElementById('users');
 var deleteEL = document.getElementById('delete');
 // var TextEL = document.getElementById('text');
 var DrawHammer = new Hammer(drawEl);
-var GravityHammer = new Hammer(gravvityEl);
+// var GravityHammer = new Hammer(gravvityEl);
 var LinkedHammer = new Hammer(linkel);
 var StaticHammer = new Hammer(staticEl);
 var UsersHammer = new Hammer(UsersEl);
@@ -166,13 +166,13 @@ function buttonClicker(bool, Mainlink, MImage, Removelink, RemoveImage, RemoveBo
         bool = true;
         RemoveBool = false;
         deleteActive = false;
-        $(Mainlink).children('img').attr('src', 'img/NewIcons/' + MImage + '_C.svg');
-        $(Removelink).children('img').attr('src', 'img/NewIcons/' + RemoveImage + '.svg');
-        $('#delete').children('img').attr('src', 'img/NewIcons/delete.svg');
+        $(Mainlink).attr('src', 'img/NewIcons/' + MImage + '_C.svg');
+        $(Removelink).attr('src', 'img/NewIcons/' + RemoveImage + '.svg');
+        $('#delete').attr('src', 'img/NewIcons/delete.svg');
         Engine.update(engine);
     } else {
         bool = false;
-        $(Mainlink).children('img').attr('src', 'img/NewIcons/' + MImage + '.svg');
+        $(Mainlink).attr('src', 'img/NewIcons/' + MImage + '.svg');
         Engine.update(engine);
     }
     return { one: bool, two: RemoveBool }
@@ -183,7 +183,7 @@ LinkedHammer.on("tap", function(ev) {
         $('.slideOption').children('div').hide();
         Engine.update(engine);
     } else {
-        $('#linked').children('img').attr('src', 'img/NewIcons/l.svg');
+        $('#linked').attr('src', 'img/NewIcons/l.svg');
         objCount = 0;
         $.each(elements, function(index) {
             elements[index].stroke = false;
@@ -209,14 +209,14 @@ DrawHammer.on("tap", function(ev) {
         clickStopped = true;
     }, 200);
 });
-GravityHammer.on("tap", function(ev) {
-    var Tapped = buttonClicker(GravityActive, '#gravity', 'g');
-    GravityActive = Tapped.one;
-    clickStopped = false;
-    setTimeout(function() {
-        clickStopped = true;
-    }, 200);
-});
+// GravityHammer.on("tap", function(ev) {
+//     var Tapped = buttonClicker(GravityActive, '#gravity', 'g');
+//     GravityActive = Tapped.one;
+//     clickStopped = false;
+//     setTimeout(function() {
+//         clickStopped = true;
+//     }, 200);
+// });
 StaticHammer.on("tap", function(ev) {
     var Tapped = buttonClicker(StaticActive, '#statics', 's');
     StaticActive = Tapped.one;
@@ -242,14 +242,21 @@ DeleteHammer.on("tap", function(ev) {
     if (deleteActive === false) {
         deleteActive = true;
         ShapesActive = false;
-        $('#shapes').children('img').attr('src', 'img/NewIcons/d.svg');
+        UserActive = false;
+        StaticActive = false;
+        $('#shapes').attr('src', 'img/NewIcons/d.svg');
+        $('#users').attr('src', 'img/NewIcons/u.svg');
+        $('#statics').attr('src', 'img/NewIcons/s.svg');
+        $('#linked').attr('src', 'img/NewIcons/l.svg');
+        $('.userlist').removeClass('userlist-on');
+
         $('.slideOption').removeClass('slideout');
         $('.slideOption').children('div').hide();
-        $('#delete').children('img').attr('src', 'img/NewIcons/delete_C.svg');
+        $('#delete').attr('src', 'img/NewIcons/delete_C.svg');
         Engine.update(engine);
     } else {
         deleteActive = false;
-        $('#delete').children('img').attr('src', 'img/NewIcons/delete.svg');
+        $('#delete').attr('src', 'img/NewIcons/delete.svg');
         Engine.update(engine);
     }
     clickStopped = false;

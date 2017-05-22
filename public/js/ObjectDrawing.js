@@ -1,5 +1,6 @@
 function UniqueID() { return '_' + Math.random().toString(36).substr(2, 9); }
 var colls = ["#F44336","#E91E63","#FF1744","#F50057","#9C27B0","#D500F9","#651FFF","#2196F3","#3F51B5","#304FFE","#29B6F6","#00BCD4","#009688","#00E676","#1DE9B6","#8BC34A","#CDDC39","#FDD835","#FFC400","#FF9100","#FF3D00"];
+
 var standColor = generateStupidColor();
 var triColor = generateStupidColor();
 var sqrColor = generateStupidColor();
@@ -73,11 +74,7 @@ function circ(x, y, r, bounce, friction, Id, force, connect,color) {
         rectMode(CENTER);
         if (this.stroke) {
             stroke(this.strokeColor);
-            // strokeWeight(3);
-            // noStroke();
         } else { noStroke();
-            // colorMode(RGB, 255, 255, 255, 1);
-            // stroke(0, 0, 0, 0.3);
             drawingContext.shadowColor = 'rgba(0,0,0,.24)';
             drawingContext.shadowBlur = 30;
             drawingContext.shadowOffsetX = this.xOff;
@@ -158,19 +155,6 @@ function textDynamic(content,x, y, w,h, fontsize, bounce, friction, Id, force, c
         pop();
 
         if (this.static) {
-            // var pos = this.body.position;
-            // var angle = this.body.angle;
-            // push();
-            //     translate(pos.x, pos.y);
-            //     rotate(angle);
-            //     rectMode(CENTER);
-            //     stroke('#000');
-            //     noFill();
-            //     fill(this.color);
-            //     textSize(24);
-            //     textAlign(CENTER);
-            //     text(this.text, 0, 0);
-            // pop();
         }
     }
     this.removeFromWorld = function() {

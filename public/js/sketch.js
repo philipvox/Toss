@@ -149,7 +149,7 @@ function draw() {
     for (var i = 0; i < textcontent.length; i++) {
         textcontent[i].show();
     }
-    Engine.update(engine);
+    // Engine.update(engine);
 }
 var textcontent = [];
 
@@ -273,29 +273,33 @@ function InitDrawing(data) {
         var bounce = data[0].Bounce;
         var friction = data[0].Friction;
         var force = data[0].force;
-        var id = data[0].ID;
+        
+        var Checkid = data[0].ID;
         var sentCount = data[0].sentCount;
         var type = data[0].Type;
         var connection = data[0].connections
         var color = data[0].color
-        
-        if (type === 'tri') {
-            var t = new triangles(x, y, r, bounce, friction, id, force, connection,color);
-            elements.push(t);
-            console.log(type);
-        }else if (type === 'sqr') {
-            var s = new squares(x, y, r, bounce, friction, id, force, connection,color);
-            elements.push(s);
-            console.log(type);
-        }else if (type === 'circle'){
-            var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
-            elements.push(c);
-            console.log(type);
+        if (userExists(elements,Checkid)) {
+            var id = UniqueID();
         }else{
-            console.log('?:'+type);
+            var id = data[0].ID;
         }
-        
-        
+
+            if (type === 'tri') {
+                var t = new triangles(x, y, r, bounce, friction, id, force, connection,color);
+                elements.push(t);
+                console.log(type);
+            }else if (type === 'sqr') {
+                var s = new squares(x, y, r, bounce, friction, id, force, connection,color);
+                elements.push(s);
+                console.log(type);
+            }else if (type === 'circle'){
+                var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
+                elements.push(c);
+                console.log(type);
+            }else{
+                console.log('?:'+type);
+            }        
     }else{
         
         for (var i = 0; i < data.length; i++) {
@@ -307,11 +311,16 @@ function InitDrawing(data) {
             var bounce = data[i].Bounce;
             var friction = data[i].Friction;
             var force = data[i].force;
-            var id = data[i].ID;
+            var Checkid = data[0].ID;
             var sentCount = data[i].sentCount;
             var type = data[i].Type;
             var connection = data[i].connections
             var color = data[i].color
+            if (userExists(elements,Checkid)) {
+                var id = UniqueID();
+            }else{
+                var id = data[0].ID;
+            }
             // var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
             if (type === 'tri') {
                 var t = new triangles(x, y, r, bounce, friction, id, force, connection,color);
