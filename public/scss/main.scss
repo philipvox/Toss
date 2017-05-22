@@ -177,6 +177,7 @@ canvas {
 		padding-bottom: 25px;
 	}
 }
+
 @mixin IconEl(){
 	width: 50px;
 	height: 50px;
@@ -202,6 +203,7 @@ canvas {
 		position:absolute;
 	}
 }
+
 @mixin IconEls(){
 	width: 60px;
 	height: 60px;
@@ -219,9 +221,14 @@ canvas {
 		position:absolute;
 	}
 }
-#delete{
+.buttns{
+	// opacity: .5;
+	// IconEls()
 	@include IconEls();
 }
+// #delete{
+// 	@include IconEls();
+// }
 .AllButtons{
 	position: fixed;
 	width:60px;
@@ -363,18 +370,18 @@ canvas {
 	// 	}
 	// }
 }
-#gravity{
-	@include IconEls();
-}
-#shapes{
-	@include IconEls();
-}
-#linked{
-  @include IconEls();
-}
-#statics {
-  @include IconEls();
-}
+// #gravity{
+// 	@include IconEls();
+// }
+// #shapes{
+// 	@include IconEls();
+// }
+// #linked{
+//   @include IconEls();
+// }
+// #statics {
+//   @include IconEls();
+// }
 
 .slideOption{
 	width: 0;
