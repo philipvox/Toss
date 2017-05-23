@@ -190,6 +190,7 @@ function triangles(x, y, r, bounce, friction, Id, force, connect,color) {
     this.body = Bodies.polygon(this.x, this.y, 3, this.r, options);
     this.body.r = r;
     this.body.label = Id;
+    this.label = Id;
     this.color = triColor;
     this.OGcolor = triColor;
     this.stroke = false;
@@ -232,7 +233,7 @@ function triangles(x, y, r, bounce, friction, Id, force, connect,color) {
                 // strokeWeight(3);
             } else { 
                 noStroke(); 
-                drawingContext.shadowColor = 'rgba(0,0,0,.34)';
+                drawingContext.shadowColor = shadowCol;
                 drawingContext.shadowBlur = 30;
                 drawingContext.shadowOffsetX = this.xOff;
                 drawingContext.shadowOffsetY = this.yOff;
@@ -288,6 +289,7 @@ function squares(x, y, r, bounce, friction, Id, force, connect,color) {
     this.body = Bodies.polygon(this.x, this.y, 4, this.r, options);
     this.body.r = r;
     this.body.label = Id;
+    this.label = Id;
     this.color = sqrColor;
     this.OGcolor = sqrColor;
     this.stroke = false;
@@ -310,8 +312,8 @@ function squares(x, y, r, bounce, friction, Id, force, connect,color) {
         this.body.isStatic = true;
     }
     World.add(world, this.body);
-    wallR.removeFromWorld();
-    wallL.removeFromWorld();
+    // wallR.removeFromWorld();
+    // wallL.removeFromWorld();
     Engine.update(engine);
     this.shadowUpdate = function(tilted) {
         var tilt = tilted;
@@ -328,7 +330,7 @@ function squares(x, y, r, bounce, friction, Id, force, connect,color) {
                 strokeWeight(3);
             } else { 
                 noStroke(); 
-                drawingContext.shadowColor = 'rgba(0,0,0,.34)';
+                drawingContext.shadowColor = shadowCol;
                 drawingContext.shadowBlur = 30;
                 drawingContext.shadowOffsetX = this.xOff;
                 drawingContext.shadowOffsetY = this.yOff;

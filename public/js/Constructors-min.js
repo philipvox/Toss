@@ -92,3 +92,4 @@ function setColor(object, color, s, bool) {
 function roundUp(num, precision) {
     return Math.ceil(num * precision) / precision
 }
+

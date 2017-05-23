@@ -1,10 +1,10 @@
 function UniqueID() { return '_' + Math.random().toString(36).substr(2, 9); }
 var colls = ["#F44336","#E91E63","#FF1744","#F50057","#9C27B0","#D500F9","#651FFF","#2196F3","#3F51B5","#304FFE","#29B6F6","#00BCD4","#009688","#00E676","#1DE9B6","#8BC34A","#CDDC39","#FDD835","#FFC400","#FF9100","#FF3D00"];
-
+// var colls = ["#D500F9","#651FFF","#00B0FF","#00E5FF","#00E676","#FF6D00","#DD2C00"];
 var standColor = generateStupidColor();
 var triColor = generateStupidColor();
 var sqrColor = generateStupidColor();
- 
+var shadowCol = 'rgba(0,0,0,.54)'; 
 function circ(x, y, r, bounce, friction, Id, force, connect,color) {
     var options = {
         friction: friction,
@@ -75,7 +75,7 @@ function circ(x, y, r, bounce, friction, Id, force, connect,color) {
         if (this.stroke) {
             stroke(this.strokeColor);
         } else { noStroke();
-            drawingContext.shadowColor = 'rgba(0,0,0,.24)';
+            drawingContext.shadowColor = shadowCol;
             drawingContext.shadowBlur = 30;
             drawingContext.shadowOffsetX = this.xOff;
             drawingContext.shadowOffsetY = this.yOff;

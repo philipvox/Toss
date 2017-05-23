@@ -49,17 +49,41 @@ $("#Usernames").submit(function(event) {
     return false;
 });
 var AllUsers = {};
-function userUpdate(data) {
+
+function userUpdate(data,disconnect, name) {
     $('.userlist').html('');
-    var AllUsers = {};
+    // var AllUsers = {};
+    //  if (disconnect) {
+        
+    // } 
+
+    if(name in ActiveUser){
+        delete ActiveUser[name];
+        AddToActiveList();
+    }
     for (var i = 0; i < data.length; i++) {
-        if (data[i] === MyName) {
-            var a = $('<li data-id="' + data[i] + '" class="MyName"><span class="data-names">' + data[i] + '</span><div class="You">Yourself</div></li>');
-            $('.userlist').prepend(a);
-        } else {
-            var a = $('<li data-id="' + data[i] + '" ><span class="data-names">' + data[i] + '</span><div class="addUser" >add</div></li>');
-            $('.userlist').append(a);
+        if (data[i] in ActiveUser) {
+            if (data[i] === MyName) {
+                var a = $('<li data-id="' + data[i] + '" class="MyName"><span class="data-names">' + data[i] + '</span><div class="You">Yourself</div></li>');
+                $('.userlist').prepend(a);
+            } else {
+                if (data[i] != name) {
+                    var a = $('<li data-id="' + data[i] + '" class="UserSelected"><span class="data-names">' + data[i] + '</span><div class="addUser" >remove</div></li>');
+                    $('.userlist').append(a);
+                }
+            }
+        }else{
+             if (data[i] === MyName) {
+                var a = $('<li data-id="' + data[i] + '" class="MyName"><span class="data-names">' + data[i] + '</span><div class="You">Yourself</div></li>');
+                $('.userlist').prepend(a);
+            }else{
+                if (data[i] != name) {
+                    var a = $('<li data-id="' + data[i] + '" ><span class="data-names">' + data[i] + '</span><div class="addUser" >add</div></li>');
+                    $('.userlist').append(a);
+                }
+            }
         }
+
         if (data[i] in AllUsers) {
             delete AllUsers[data[i]];
         } else {
@@ -67,16 +91,10 @@ function userUpdate(data) {
                 AllUsers[data[i]] = data[i];
             }
         }
-        for (var x = 0; x < Object.keys(ActiveUser).length; x++) {
-            console.log(data[i]);
-            if (Object.keys(ActiveUser)[x] != data[i]) {
-                console.log(Object.keys(ActiveUser)[x]);
-                delete ActiveUser[Object.keys(ActiveUser)[x]];
-                AddToActiveList();
-            }
-        }
+        //OnClick Do this
         a.on('click', function() {
             var thisID = $(this).children('span').html();
+
             if (thisID != MyName) {
                 if ($(this).hasClass('UserSelected')) {
                     $(this).removeClass('UserSelected');
@@ -93,22 +111,57 @@ function userUpdate(data) {
                 if (thisID != MyName) {
                     ActiveUser[thisID] = thisID;
                     AddToActiveList();
+                    socket.emit('AddedNotification', MyName, thisID);
                 }
             }
 
         });
+         
     }
-    // console.log(data);    
+   
+
     socket.emit('updateActive', ActiveUser);
 }
+
+function NotificationAdded(data) {
+    console.log(data);
+    $('#AddNote').addClass('Notedown');
+    $('#userAddedYou').html(data);
+    $('#userAdded').html(data);
+    $('#adds').attr('data-add', data);
+}
+$('#adds').click(function(event) {
+    var name = $(this).attr('data-add');
+    $('.userlist').children('li').each(function(index, el) {
+        if ($(this).attr('data-id') == name) {
+             if ($(this).hasClass('UserSelected')) {
+                $(this).removeClass('UserSelected');
+                $(this).children('.addUser').html('add');
+            } else {
+                $(this).addClass('UserSelected');
+                $(this).children('.addUser').html('remove');
+            }
+        }
+    });
+     if (name != MyName) {
+        ActiveUser[name] = name;
+        $('#AddNote').removeClass('Notedown');
+        AddToActiveList();
+    }
+});
+$('#hide').click(function(event) {
+    $('#AddNote').removeClass('Notedown');
+});
 function AddToActiveList() {
     $('.Sending-userlist').html('');
     for (var i = 0; i < Object.keys(ActiveUser).length; i++) {
         if (MyName != Object.values(ActiveUser)[i]) {
+            
             var active = Object.values(ActiveUser)[i];
             var visable = Object.values(ActiveUser)[i];
             var activeUserListMoreThanThree;
             var activeUserList;
+
             if (Object.keys(ActiveUser).length >= 3) {
                 activeUserListMoreThanThree = $('<li class="actievCount" ><span data-id="' + active + '" class="data-names">' + Object.keys(ActiveUser).length + ' active</span></li>');
                 $('.Sending-userlist').html(activeUserListMoreThanThree);
@@ -122,16 +175,17 @@ function AddToActiveList() {
                     UserActive = Tapped.one;
 
                 });
-            } else {
+            } 
+            else {
                 activeUserList = $('<li><span data-id="' + active + '" class="data-names">' + visable + '</span></li>');
                 $('.Sending-userlist').append(activeUserList);
-                activeUserList.on('click', function() {
-                    var thisID = $(this).children('span').data('id');
-                    if (thisID in ActiveUser) {
-                        delete ActiveUser[thisID];
-                        AddToActiveList();
-                    }
-                });
+                // activeUserList.on('click', function() {
+                //     var thisID = $(this).children('span').data('id');
+                //     if (thisID in ActiveUser) {
+                //         delete ActiveUser[thisID];
+                //         AddToActiveList();
+                //     }
+                // });
             }
         }
     }  
@@ -263,7 +317,12 @@ DeleteHammer.on("tap", function(ev) {
     setTimeout(function() {
         clickStopped = true;
     }, 200);
+
 });
+
+
+
+
 // TextHammer.on("tap", function(ev) {
   
 //     var Tapped = buttonClicker(TextActive, '#text', 't');
