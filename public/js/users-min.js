@@ -130,6 +130,7 @@ function NotificationAdded(data) {
     $('#userAdded').html(data);
     $('#adds').attr('data-add', data);
 }
+
 $('#adds').click(function(event) {
     var name = $(this).attr('data-add');
     $('.userlist').children('li').each(function(index, el) {

@@ -320,52 +320,50 @@ function InitDrawing(data) {
             var connection = data[i].connections
             var color = data[i].color
             if (userExists(elements,Checkid)) {
-               var id = UniqueID();
+               // var id = UniqueID();
                
             }else{
                 var id = data[0].ID;
-            }
-            
-        
-            // var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
-            if (type === 'tri') {
-                var t = new triangles(x, y, r, bounce, friction, id, force, connection,color);
-                elements.push(t);
-            }else if (type === 'sqr') {
-                var s = new squares(x, y, r, bounce, friction, id, force, connection,color);
-                elements.push(s);
-            }else if (type === 'circle'){
-                var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
-                elements.push(c);
-            }else{
+                // var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
+                if (type === 'tri') {
+                    var t = new triangles(x, y, r, bounce, friction, id, force, connection,color);
+                    elements.push(t);
+                }else if (type === 'sqr') {
+                    var s = new squares(x, y, r, bounce, friction, id, force, connection,color);
+                    elements.push(s);
+                }else if (type === 'circle'){
+                    var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
+                    elements.push(c);
+                }else{
+                    // console.log(type);
+                }
                 // console.log(type);
-            }
-            // console.log(type);
-            if (prev){
-                    var first,second;
-                    for (var m = 0; m < elements.length; m++) {
-                        for (var d = 0; d < c.connections.length; d++) {
-                            for (var x = 0; x <  elements[m].connections.length; x++) {
-                                if (elements[m].connections[x].a == c.connections[d].a) {
-                                    first = c.body;
-                                }
-                                if (c.connections[d].b == elements[m].connections[x].b) {
-                                    second = elements[m].body
-                                }
-                                if (first != undefined && second != undefined) {
-                                    var labels = first.label+second.label
-                                    if (!(userExists(joints, labels))) {
+                if (prev){
+                        var first,second;
+                        for (var m = 0; m < elements.length; m++) {
+                            for (var d = 0; d < c.connections.length; d++) {
+                                for (var x = 0; x <  elements[m].connections.length; x++) {
+                                    if (elements[m].connections[x].a == c.connections[d].a) {
+                                        first = c.body;
+                                    }
+                                    if (c.connections[d].b == elements[m].connections[x].b) {
+                                        second = elements[m].body
+                                    }
+                                    if (first != undefined && second != undefined) {
+                                        var labels = first.label+second.label
+                                        if (!(userExists(joints, labels))) {
 
-                                        var j = new Constraint(first, second,(first.circleRadius + second.circleRadius)*1.5, stiff, labels)
-                                        joints.push(j); 
-                                        console.log(j); 
+                                            var j = new Constraint(first, second,(first.circleRadius + second.circleRadius)*1.5, stiff, labels)
+                                            joints.push(j); 
+                                            console.log(j); 
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
+                }
+                prev.push(c);
             }
-            prev.push(c);
         }
     }
 }
@@ -404,38 +402,38 @@ function updateGravity(event) {
     // if (true) {
      
     // } else {
-        engine.world.gravity.x = 0;
-        if (debug) {
-        engine.world.gravity.y = 1;
-        }else{
-        engine.world.gravity.y = 0;
-        }
+    //     engine.world.gravity.x = 0;
+    //     if (debug) {
+    //     engine.world.gravity.y = 1;
+    //     }else{
+    //     engine.world.gravity.y = 0;
+    //     }
     // }
-       // if (!engine) return;
-       //  var orientation = window.orientation,
-       //      gravity = engine.world.gravity;
-       //  var orentationObj;
-       //  if (orientation === 0) {
-       //      gravity.x = Common.clamp(event.gamma, -90, 90) / 90;
-       //      gravity.y = Common.clamp(event.beta, -90, 90) / 90;
-       //      orentationObj= {x:gravity.x,y:gravity.y};
-       //  } else if (orientation === 180) {
-       //      gravity.x = Common.clamp(event.gamma, -90, 90) / 90;
-       //      gravity.y = Common.clamp(-event.beta, -90, 90) / 90;
-       //      orentationObj= {x:gravity.x,y:gravity.y};
-       //  } else if (orientation === 90) {
-       //      gravity.x = Common.clamp(event.beta, -90, 90) / 90;
-       //      gravity.y = Common.clamp(-event.gamma, -90, 90) / 90;
-       //      orentationObj= {x:gravity.x,y:gravity.y};
-       //  } else if (orientation === -90) {
-       //      gravity.x = Common.clamp(-event.beta, -90, 90) / 90;
-       //      gravity.y = Common.clamp(event.gamma, -90, 90) / 90;
-       //      orentationObj= {x:gravity.x,y:gravity.y};
-       //  }
-       //  // $('#texteds').html(orentationObj.x * 100)
-       //  for (var i = 0; i < elements.length; i++) {
-       //      elements[i].shadowUpdate(orentationObj);
-       //  }
+       if (!engine) return;
+        var orientation = window.orientation,
+            gravity = engine.world.gravity;
+        var orentationObj;
+        if (orientation === 0) {
+            gravity.x = Common.clamp(event.gamma, -90, 90) / 90;
+            gravity.y = Common.clamp(event.beta, -90, 90) / 90;
+            orentationObj= {x:gravity.x,y:gravity.y};
+        } else if (orientation === 180) {
+            gravity.x = Common.clamp(event.gamma, -90, 90) / 90;
+            gravity.y = Common.clamp(-event.beta, -90, 90) / 90;
+            orentationObj= {x:gravity.x,y:gravity.y};
+        } else if (orientation === 90) {
+            gravity.x = Common.clamp(event.beta, -90, 90) / 90;
+            gravity.y = Common.clamp(-event.gamma, -90, 90) / 90;
+            orentationObj= {x:gravity.x,y:gravity.y};
+        } else if (orientation === -90) {
+            gravity.x = Common.clamp(-event.beta, -90, 90) / 90;
+            gravity.y = Common.clamp(event.gamma, -90, 90) / 90;
+            orentationObj= {x:gravity.x,y:gravity.y};
+        }
+        // $('#texteds').html(orentationObj.x * 100)
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].shadowUpdate(orentationObj);
+        }
         
 };
 
