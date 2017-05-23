@@ -312,8 +312,8 @@ function squares(x, y, r, bounce, friction, Id, force, connect,color) {
         this.body.isStatic = true;
     }
     World.add(world, this.body);
-    // wallR.removeFromWorld();
-    // wallL.removeFromWorld();
+    wallR.removeFromWorld();
+    wallL.removeFromWorld();
     Engine.update(engine);
     this.shadowUpdate = function(tilted) {
         var tilt = tilted;
