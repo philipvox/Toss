@@ -23,10 +23,13 @@ function newConnetion(socket) {
   socket.on('rotate', rotates);
   socket.on('ropeVal', ropes);
   socket.on('User_added', UserAdded);
+  socket.on('AddedNotification', AddedNotification);
   
+
   function UserAdded(data, user) {
     clients[user].emit('rotate', data);
   }
+  
   function rotates(data, user) {
     // io.sockets.emit('rotate', data)
     clients[user].emit('rotate', data);
@@ -53,22 +56,24 @@ function newConnetion(socket) {
       callback(true);
       socket.nickname = data;
       clients[socket.nickname] = socket;
-      // console.log(clients);
-      // socket.emit('clients', clients)
       updateClients();
     }
   }
   socket.on('disconnect', function(data) {
     if (!socket.nickname) return;
+      updateClients(true, clients[socket.nickname].nickname);
       delete clients[socket.nickname];
-      updateClients();
+      
 
    });
-  function updateClients(){
-    io.sockets.emit('clients', Object.keys(clients))
+  function updateClients(disconnect, name){
+    io.sockets.emit('clients', Object.keys(clients), disconnect, name);
   }
   function updateActive(data){
     socket.broadcast.emit('updateActive', data)
+  }
+  function AddedNotification(data, user) {
+    clients[user].emit('NotificationAdded', data);
   }
 
 }
