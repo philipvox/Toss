@@ -320,12 +320,10 @@ function InitDrawing(data) {
             var connection = data[i].connections
             var color = data[i].color
             if (userExists(elements,Checkid)) {
-               var id = UniqueID();
+               // var id = UniqueID();
                
             }else{
                 var id = data[i].ID;
-            }
-        
             // var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
             if (type === 'tri') {
                 var t = new triangles(x, y, r, bounce, friction, id, force, connection,color);
@@ -364,7 +362,8 @@ function InitDrawing(data) {
                         }
                     }
             }
-            prev.push(c);
+                prev.push(c);
+            }
         }
     }
 }
