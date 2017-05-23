@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="124" height="124" viewBox="0 0 124 124">
+  <defs>
+    <style>
+      .a {
+        fill: #fff8e1;
+      }
+
+      .b {
+        fill: #ffebb1;
+      }
+
+      .c {
+        fill: #ffe080;
+      }
+
+      .d {
+        fill: #424243;
+      }
+
+      .e {
+        fill: #bdbcbc;
+      }
+
+      .f {
+        fill: #f7bace;
+      }
+
+      .g {
+        fill: #e0e0e0;
+      }
+
+      .h {
+        fill: #f9ccd2;
+      }
+
+      .i {
+        fill: #eee;
+      }
+
+      .j {
+        fill: #fcd736;
+      }
+
+      .k {
+        fill: #fbb216;
+      }
+
+      .l {
+        fill: #f9a528;
+      }
+    </style>
+  </defs>
+  <title>Asset 6</title>
+  <g>
+    <image width="124" height="124" xlink:href="Asset61.png"/>
+    <g>
+      <path class="a" d="M63.12,82.08,47.51,85.35c0-.79-6-8.46-8.35-8.35l3.26-15.61C49,57.28,55.37,54,57.78,66.72c4.34.82,6.82,2.1,8,3.71a5.1,5.1,0,0,1,.82,4.34C66.16,77,64.72,79.53,63.12,82.08Z"/>
+      <polyline class="b" points="36.98 87.51 49.48 68.12 60.58 67.39 63.28 81.92"/>
+      <polygon class="c" points="56.38 75.02 36.98 87.51 63.28 81.92 64.97 75.02 56.38 75.02"/>
+      <path class="d" d="M47.5,85.33,37,87.54l0,0v0h0l0,0L39.19,77a6.13,6.13,0,0,1,1.31.42,11.19,11.19,0,0,1,2,1,11.67,11.67,0,0,1,2,1.56,11.24,11.24,0,0,1,1.42,1.76,10.78,10.78,0,0,1,1.59,3.52Z"/>
+      <path class="e" d="M37,87.51,40.5,77.44a11.19,11.19,0,0,1,2,1Z"/>
+      <rect class="f" x="76.29" y="42.38" width="5.96" height="19.51" transform="translate(-13.65 71.32) rotate(-45)"/>
+      <rect class="g" x="72.07" y="46.59" width="5.96" height="19.52" transform="translate(-17.86 69.57) rotate(-45)"/>
+      <rect class="h" x="65.94" y="36.9" width="5.96" height="9.76" transform="translate(-9.36 60.97) rotate(-45)"/>
+      <rect class="i" x="61.72" y="41.12" width="5.96" height="9.76" transform="translate(-13.57 59.22) rotate(-45)"/>
+      <g>
+        <path class="j" d="M59.14,44.65,42.58,61.22c4,.22,6.57,2.88,6.9,6.9L66,51.56Z"/>
+        <path class="k" d="M66,51.56,49.48,68.12c4,.22,6.57,2.88,6.9,6.9L72.94,58.46Z"/>
+        <path class="l" d="M72.94,58.46,56.38,75c4,.22,6.57,2.88,6.9,6.9L79.85,65.36Z"/>
+      </g>
+    </g>
+  </g>
+</svg>
