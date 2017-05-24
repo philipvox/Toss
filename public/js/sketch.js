@@ -100,10 +100,17 @@ function setup() {
       // console.warn(`ERROR(${err.code}): ${err.message}`);
     };
     navigator.geolocation.getCurrentPosition(success, error, options);
+    colorBg = colorbgs[Math.floor(Math.random()*colorbgs.length)];
+    console.log(colorBg);
 }
+ var colorBg;
+var colorbgs = ["E0F7FA","E1F5FE","E3F2FD","E8EAF6"]
 function draw() {
     // background('#ECEFF1');
-    background('#263238');
+    // background('#263238');
+    
+    background('#ECEFF1');
+    
     if (ShapesActive) {
         DrawingSelected();
     }

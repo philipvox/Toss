@@ -4,7 +4,7 @@ var colls = ["#F44336","#E91E63","#FF1744","#F50057","#9C27B0","#D500F9","#651FF
 var standColor = generateStupidColor();
 var triColor = generateStupidColor();
 var sqrColor = generateStupidColor();
-var shadowCol = 'rgba(0,0,0,.54)'; 
+var shadowCol = 'rgba(0,0,0,.34)'; 
 function circ(x, y, r, bounce, friction, Id, force, connect,color) {
     var options = {
         friction: friction,
@@ -205,7 +205,7 @@ function Constraint(BodyA, BodyB, L, S, label) {
         push();
         noStroke();
         fill('#B0BEC5')
-        var count = 15;
+        var count = 50;
         for (var i = 0; i < count; i++) {
             var x = lerp(posA.x, posB.x, i / count);
             var y = lerp(posA.y, posB.y, i / count);

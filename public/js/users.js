@@ -198,13 +198,16 @@ $(function() {
     var me = generateStupidName();
     $('#naming').val(me);
 });
+
 function DrawingSelected() {
     if (ShapesActive === true) {
         if (TouchDrawing) {
-            var bsX = startV.x
-            var bsY = startV.y
-            var bw = roundUp(mouseX - startV.x, .1)
-            var bh = roundUp(mouseY - startV.y, .1)
+
+            var bsX = startV.x;
+            var bsY = startV.y;
+            var bw = roundUp(mouseX - startV.x, .1);
+            var bh = roundUp(mouseY - startV.y, .1);
+
             push();
                 rectMode(CENTER);
                 stroke('blue');

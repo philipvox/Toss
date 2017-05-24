@@ -100,10 +100,17 @@ function setup() {
       // console.warn(`ERROR(${err.code}): ${err.message}`);
     };
     navigator.geolocation.getCurrentPosition(success, error, options);
+    colorBg = colorbgs[Math.floor(Math.random()*colorbgs.length)];
+    console.log(colorBg);
 }
+ var colorBg;
+var colorbgs = ["E0F7FA","E1F5FE","E3F2FD","E8EAF6"]
 function draw() {
     // background('#ECEFF1');
-    background('#263238');
+    // background('#263238');
+    
+    background('#ECEFF1');
+    
     if (ShapesActive) {
         DrawingSelected();
     }
@@ -314,7 +321,7 @@ function InitDrawing(data) {
             var bounce = data[i].Bounce;
             var friction = data[i].Friction;
             var force = data[i].force;
-            var Checkid = data[0].ID;
+            var Checkid = data[i].ID;
             var sentCount = data[i].sentCount;
             var type = data[i].Type;
             var connection = data[i].connections
@@ -323,45 +330,45 @@ function InitDrawing(data) {
                // var id = UniqueID();
                
             }else{
-                var id = data[0].ID;
-                // var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
-                if (type === 'tri') {
-                    var t = new triangles(x, y, r, bounce, friction, id, force, connection,color);
-                    elements.push(t);
-                }else if (type === 'sqr') {
-                    var s = new squares(x, y, r, bounce, friction, id, force, connection,color);
-                    elements.push(s);
-                }else if (type === 'circle'){
-                    var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
-                    elements.push(c);
-                }else{
-                    // console.log(type);
-                }
+                var id = data[i].ID;
+            // var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
+            if (type === 'tri') {
+                var t = new triangles(x, y, r, bounce, friction, id, force, connection,color);
+                elements.push(t);
+            }else if (type === 'sqr') {
+                var s = new squares(x, y, r, bounce, friction, id, force, connection,color);
+                elements.push(s);
+            }else if (type === 'circle'){
+                var c = new circ(x, y, r, bounce, friction, id, force, connection,color);
+                elements.push(c);
+            }else{
                 // console.log(type);
-                if (prev){
-                        var first,second;
-                        for (var m = 0; m < elements.length; m++) {
-                            for (var d = 0; d < c.connections.length; d++) {
-                                for (var x = 0; x <  elements[m].connections.length; x++) {
-                                    if (elements[m].connections[x].a == c.connections[d].a) {
-                                        first = c.body;
-                                    }
-                                    if (c.connections[d].b == elements[m].connections[x].b) {
-                                        second = elements[m].body
-                                    }
-                                    if (first != undefined && second != undefined) {
-                                        var labels = first.label+second.label
-                                        if (!(userExists(joints, labels))) {
+            }
+            // console.log(type);
+            if (prev){
+                    var first,second;
+                    for (var m = 0; m < elements.length; m++) {
+                        for (var d = 0; d < c.connections.length; d++) {
+                            for (var x = 0; x <  elements[m].connections.length; x++) {
+                                if (elements[m].connections[x].a == c.connections[d].a) {
+                                    first = c.body;
+                                }
+                                if (c.connections[d].b == elements[m].connections[x].b) {
+                                    second = elements[m].body
+                                }
+                                if (first != undefined && second != undefined) {
+                                    var labels = first.label+second.label
+                                    if (!(userExists(joints, labels))) {
 
-                                            var j = new Constraint(first, second,(first.circleRadius + second.circleRadius)*1.5, stiff, labels)
-                                            joints.push(j); 
-                                            console.log(j); 
-                                        }
+                                        var j = new Constraint(first, second,(first.circleRadius + second.circleRadius)*1.5, stiff, labels)
+                                        joints.push(j); 
+                                        console.log(j); 
                                     }
                                 }
                             }
                         }
-                }
+                    }
+            }
                 prev.push(c);
             }
         }
