@@ -302,12 +302,12 @@ DeleteHammer.on("tap", function(ev) {
         ShapesActive = false;
         UserActive = false;
         StaticActive = false;
+        LinksActive = false;
         $('#shapes').attr('src', 'img/NewIcons/d.svg');
         $('#users').attr('src', 'img/NewIcons/u.svg');
         $('#statics').attr('src', 'img/NewIcons/s.svg');
         $('#linked').attr('src', 'img/NewIcons/l.svg');
         $('.userlist').removeClass('userlist-on');
-
         $('.slideOption').removeClass('slideout');
         $('.slideOption').children('div').hide();
         $('#delete').attr('src', 'img/NewIcons/delete_C.svg');
