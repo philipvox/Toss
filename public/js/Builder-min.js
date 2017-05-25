@@ -6,19 +6,19 @@ var dots = [];
 var SPRcount = 0;
 var countBylabel = {};
 
-function MakeSquare(bool, Tbody, elements, i) {
+function MakeSquare(bool, Tbody, elements, i, nonexistant) {
     if (bool === true) {
         if (squareMaker.length != 0) {
             squareMaker.push(elements[i]);
             countBylabel = count(squareMaker, function(item) { if (item.body != undefined) { return item.body.label } })
-            var equaled = allTrue(countBylabel);
+            var equaled = allTrue(countBylabel,nonexistant);
         } else {
             squareMaker.push(elements[i]);
         }
     }
 }
 
-function allTrue(obj) {
+function allTrue(obj,nonexistant) {
     if (obj != undefined) {
         // console.log(obj);
         var spr = [3, 3, 3, 3]
@@ -26,28 +26,32 @@ function allTrue(obj) {
         var rect = [3, 3, 3, 3, 5, 5]
         var keysArray = [];
         var keys = Object.keys(obj);
-        // var keysSorted = Object.values(obj).sort(function(a,b){if (obj[a] != undefined && obj[b] != undefined) {return obj[a]-obj[b]}});
-        for (var i = 0; i < keys.length; i++) {
-            var val = obj[keys[i]];
-            keysArray.push(val);
-        }
-        if (keysArray.equals(spr)) {
-            // console.log('spr');
-            var Vals = buildShapeObj(squareMaker);
-            elements.push(new squares(Vals.x, Vals.y, Vals.r, bounced, frictioned, UniqueID()));
-            squareMaker = [];
-        }
-        if (keysArray.equals(tri)) {
-            // console.log('tri');
-            var Vals = buildShapeObj(squareMaker);
-            elements.push(new triangles(Vals.x, Vals.y, Vals.r, bounced, frictioned, UniqueID()));
-            Engine.update(engine);
-            squareMaker = [];
-        }
-        if (keysArray.equals(rect)) {
-            // console.log('rect');
-            dots.push(new dot(squareMaker, 'rect'));
-            squareMaker = [];
+
+        if (nonexistant) {
+            // var keysSorted = Object.values(obj).sort(function(a,b){if (obj[a] != undefined && obj[b] != undefined) {return obj[a]-obj[b]}});
+            console.log(keysArray);
+            for (var i = 0; i < keys.length; i++) {
+                var val = obj[keys[i]];
+                keysArray.push(val);
+            }
+            if (keysArray.equals(spr)) {
+                // console.log('spr');
+                var Vals = buildShapeObj(squareMaker);
+                elements.push(new squares(Vals.x, Vals.y, Vals.r, bounced, frictioned, UniqueID()));
+                squareMaker = [];
+            }
+            if (keysArray.equals(tri)) {
+                // console.log('tri');
+                var Vals = buildShapeObj(squareMaker);
+                elements.push(new triangles(Vals.x, Vals.y, Vals.r, bounced, frictioned, UniqueID()));
+                Engine.update(engine);
+                squareMaker = [];
+            }
+            if (keysArray.equals(rect)) {
+                // console.log('rect');
+                dots.push(new dot(squareMaker, 'rect'));
+                squareMaker = [];
+            }
         }
     }
 }

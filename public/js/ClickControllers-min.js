@@ -1,6 +1,6 @@
 var obj = {}
 var FirstEl;
-
+var oopsClick;
 function mouseCon() {
     this.cmouse = Mouse.create(canvas.elt);
     this.cmouse.pixelRatio = pixelDensity();
@@ -18,7 +18,7 @@ function mouseCon() {
                     elStatic(StaticActive, this.body, elements, i);
                     elLinks(LinksActive, this.body, elements, i);
                     deletME(deleteActive, this.body, elements, i);
-                    MakeSquare(LinksActive, this.body, elements, i);
+                    MakeSquare(LinksActive, this.body, elements, i, oopsClick);
                 }
             }
         }
@@ -58,40 +58,59 @@ function elStatic(bool, Tbody, elements, i) {
 }
 
 function elLinks(bool, Tbody, elements, i) {
+
     if (bool === true) {
         if (objCount === 0) {
             if (Tbody) {
                 clickedObj = Tbody;
                 FirstEl = elements[i];
-                setColor(elements[i], elements[i].color, '#A5FF3D', true);
+                setColor(elements[i], elements[i].color, '#0000FF', true);
                 obj = { a: clickedObj.label };
+            }else{
+                objCount = 0;
+                FirstEl = '';
             }
         } else {
             if (Tbody) {
                 clickedObj_Prev = Tbody;
-                setColor(elements[i], elements[i].color, '#A5FF3D', true);
-                if ((clickedObj_Prev != clickedObj) && (clickedObj != clickedObj_Prev)) {
-                    obj['b'] = clickedObj_Prev.label;
-                    FirstEl.connections.push(obj);
-                    elements[i].connections.push(obj);
-                    obj = {};
-                    if (Tbody.r) {
-                        console.log(clickedObj.r);
-                        console.log(clickedObj_Prev.r);
-                        joints.push(new Constraint(clickedObj, clickedObj_Prev, (clickedObj.r + clickedObj_Prev.r) * 2, stiff, UniqueID()));
-                    } 
+                setColor(elements[i], elements[i].color, '#0000FF', true);
+                // console.log(bodyexistes(elements,clickedObj.label));
+                oopsClick = bodyexistes(elements,clickedObj.label)
+                if(oopsClick){
+                    if ((clickedObj_Prev != clickedObj) && (clickedObj != clickedObj_Prev)) {
+                        obj['b'] = clickedObj_Prev.label;
+                        FirstEl.connections.push(obj);
+                        elements[i].connections.push(obj);
+                        setTimeout(function() {
+                            $.each(elements, function(index) {
+                                setColor(elements[index], elements[index].color, false);
+                            });
+                        }, 350);
+                        obj = {};
+                        if (Tbody.r) {
+                            joints.push(new Constraint(clickedObj, clickedObj_Prev, (clickedObj.r + clickedObj_Prev.r) * 2, stiff, UniqueID()));
+                        } 
+                    }else{
+                        $.each(elements, function(index) {
+                            setColor(elements[index], elements[index].color, false);
+                        });
+                    }
                 }
+
             }
         }
         objCount++;
         if (objCount >= 2) {
             objCount = 0;
             FirstEl = '';
-            $.each(elements, function(index) {
-                setColor(elements[index], elements[index].color, false);
-            });
+            
         }
     }
+}
+function bodyexistes(arr,newlabel) {
+  return arr.some(function(el) {
+    return el.body.label === newlabel;    
+  }); 
 }
 
 // if (clickedObj.types != 'circle' && clickedObj_Prev.types != 'circle') {
