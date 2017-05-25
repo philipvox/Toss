@@ -416,6 +416,7 @@ function updateGravity(event) {
     //     engine.world.gravity.y = 0;
     //     }
     // }
+    if (mobilecheck()) {
        if (!engine) return;
         var orientation = window.orientation,
             gravity = engine.world.gravity;
@@ -441,7 +442,10 @@ function updateGravity(event) {
         for (var i = 0; i < elements.length; i++) {
             elements[i].shadowUpdate(orentationObj);
         }
-        
+    }else{
+        engine.world.gravity.x = 0;
+        engine.world.gravity.y = 1;
+    }
 };
 
 
